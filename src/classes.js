@@ -27,7 +27,7 @@
 })(); */
 
 
-class Project{
+export class Project{
 
     constructor(title, description){
         this.title = title;
@@ -49,7 +49,7 @@ class Project{
     
 }
 
-class Task{
+export class Task{
 
 
     constructor(title, description, dueDate, priority){
