@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.querySelector("#content");!function(){const t=document.createElement("button");t.innerText="Create Project",e.appendChild(t)}()})();
