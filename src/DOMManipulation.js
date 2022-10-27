@@ -1,4 +1,5 @@
 import { Project, Task, projectList} from './classes'
+import './style.css';
 
 
 const content = document.getElementById('content')
@@ -24,8 +25,6 @@ export function onLoad(){
 
 }; 
 
-
-
 function displayProjectForm(){
 
     const projectForm = document.createElement('form');
@@ -38,6 +37,7 @@ function displayProjectForm(){
 
 
     projectFormModal.appendChild(projectForm);
+    projectFormModal.className = "projectFormModal";
     projectForm.appendChild(formLegend);
     formLegend.innerText = 'New Project';
 
