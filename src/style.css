@@ -1,5 +1,35 @@
-.projectFormModal{
-    border-radius: 10px;
-    border: 0;
-    height: 10rem;
+body{
+    margin: 0;
+}
+
+#content{
+
+    height: auto;
+    display: grid;
+    grid-template-columns: .5fr 1.5fr 1.5fr;
+    grid-template-rows: .5fr 1.5fr 1.5fr;
+    grid-template-areas: 
+    "top top top"
+    "side main main"
+    "side main main";
+}
+
+.sideBar{
+
+    min-height: 100vh;
+    grid-area: side;
+    background-color: rgb(8, 103, 187);
+}
+
+.topBar{
+
+    min-width: 100vw;
+    grid-area: top;
+    background-color: rgb(125, 172, 241);
+
+}
+
+.main{
+    grid-area: main;
+
 }

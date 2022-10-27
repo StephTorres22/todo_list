@@ -1,16 +1,16 @@
 import { Project, Task, projectList} from './classes'
 import './style.css';
 
-
+/* 
 const content = document.getElementById('content')
 const projectFormModal = document.createElement('dialog');
 content.appendChild(projectFormModal);
-
+ */
 
 
 /* onLoad to creat DOM might not work as will want to access a lot of the different elements 
     from different functions, what about using IIFE */
-export function onLoad(){
+/* export function onLoad(){
 
 
     displayProjectForm()
@@ -71,4 +71,4 @@ function displayProjectArray(){
 
     projectList.forEach()
 
-}
+} */
