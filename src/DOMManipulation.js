@@ -8,6 +8,8 @@ content.appendChild(projectFormModal);
 
 
 
+/* onLoad to creat DOM might not work as will want to access a lot of the different elements 
+    from different functions, what about using IIFE */
 export function onLoad(){
 
 
