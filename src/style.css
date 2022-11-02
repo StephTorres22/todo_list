@@ -19,6 +19,35 @@ body{
     min-height: 100vh;
     grid-area: side;
     background-color: rgb(8, 103, 187);
+    padding: .75rem;
+    padding-top: 3rem;
+}
+
+.sideBarControls{
+
+    max-width: inherit;
+    max-height: 4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.smallIcon{
+
+    height: 3rem;
+    width: auto;
+    
+}
+
+.sideBarCard{
+    border-radius: 10px;
+    background-color: white;
+    max-width: inherit;
+    height: 15rem;
+    padding: .5rem;
+    overflow: hidden;
 }
 
 .topBar{
@@ -31,5 +60,6 @@ body{
 
 .main{
     grid-area: main;
+    background-color: rgb(245, 239, 239);
 
 }
