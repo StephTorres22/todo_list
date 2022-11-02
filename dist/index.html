@@ -11,8 +11,8 @@
     <div id="content">
         <div class="sideBar">
             <div class="sideBarControls">
-                <img src="../src/assets/plus.svg" alt="plus symbol" class="smallIcon">
-                <img src="../src/assets/note-plus-outline.svg" alt="add task" class="smallIcon">
+                <img src="../src/assets/plus.svg" alt="plus symbol" class="smallIcon" id="addProject">
+                <img src="../src/assets/note-plus-outline.svg" alt="add task" class="smallIcon" id="addTask">
                 <img src="../src/assets/calendar-check.svg" alt="calender" class="smallIcon">
             </div>
             <div class="sideBarCard">Default project
@@ -38,7 +38,19 @@
 
     </div>
 
-  
+    <dialog class="modal" id="projectFormModal">
+
+        <form action="./index.html" id="projectForm">
+
+            <legend>Form Details</legend>
+
+            <input type="text" name="projectTitle" id="projectTitle" placeholder="Project Name" required>
+            <input type="text">
+
+        </form>
+
+
+    </dialog>
     
 </body>
 </html>

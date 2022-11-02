@@ -21,6 +21,7 @@ body{
     background-color: rgb(8, 103, 187);
     padding: .75rem;
     padding-top: 3rem;
+    
 }
 
 .sideBarControls{
@@ -30,15 +31,30 @@ body{
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
+    padding-top:0;
     padding-left: .5rem;
     padding-right: .5rem;
+    margin-top: 0;
+    
 }
 
 .smallIcon{
 
     height: 3rem;
-    width: auto;
-    
+    width: auto;    
+}
+
+.smallIcon:hover{
+    filter: 
+        invert(0.5)
+        sepia(1)
+        saturate(20)
+        hue-rotate(21deg)
+        brightness(1.5);
+        /* this is incredile! because svg is in an image tag in HTML, can't access 
+        fill and stroke attribute,
+        using filter however we can play around with the colour!
+        https://css-tricks.com/the-many-ways-to-change-an-svg-fill-on-hover-and-when-to-use-them/ */
 }
 
 .sideBarCard{
