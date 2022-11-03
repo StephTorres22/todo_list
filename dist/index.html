@@ -42,10 +42,17 @@
 
         <form action="./index.html" id="projectForm">
 
-            <legend>Form Details</legend>
+            <legend>Project Details</legend>
 
             <input type="text" name="projectTitle" id="projectTitle" placeholder="Project Name" required>
-            <input type="text">
+            <input type="text" name="description" id="description" placeholder="Description" required>
+
+            <div class="buttonDiv">
+                <button type="submit" class="submitProject" id="submitProjectButton">Add Project</button>
+                <button type="reset">Clear</button>
+                <button type="button" class="closeModal">&times;</button>
+            </div>
+                
 
         </form>
 
