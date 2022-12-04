@@ -1,4 +1,6 @@
-export const projectList = [];
+import './style.css'
+import { projectList } from './index'
+import { sideBar, projectTitle, projectDescription } from './DOMManipulation';
 
 
 export class Project{
@@ -12,7 +14,23 @@ export class Project{
     displayProjectData(){
 
         console.log(`${this.title}, ${this.description}`);
+        let newProject = document.createElement('div');
+        sideBar.appendChild(newProject);
+        newProject.classList.add('sideBarCard');
+        let pTitle = document.createElement('h4');
+        newProject.appendChild(pTitle);
+        pTitle.innerText = `${this.title}`;
 
+    }
+
+    
+
+    addProjectToStorage(){
+
+        /* Adds project to local storage with title and description as key and array as value pair */
+
+        localStorage.setItem(`${this.title}, ${this.description}`, `${this.projectArray}`);
+    
     }
 
 
@@ -36,5 +54,7 @@ export class Task{
     /* method to remove from array */
 
 }
+
+
 
 

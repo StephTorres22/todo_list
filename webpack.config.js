@@ -6,20 +6,30 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-    index:  './src/index.js',
-    print: './src/print.js'
+    bundle: path.resolve(__dirname, '/src/index.js'),
+    
     },
-devtool: 'inline-source-map',
-plugins: [
-    new HtmlWebpackPlugin({
-        title: 'Development',
-    }),
-],
-output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
-},
+    output: {
+        filename: '[name][contenthash].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+    },
+
+optimization: {
+
+    runtimeChunk: 'single',
+
+  },
+  devServer: {
+    static: {
+        directory: path.resolve(__dirname, 'dist')
+    },
+    port: 3000,
+    open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+  },
  module: {
     rules: [
         {
@@ -31,5 +41,16 @@ output: {
         type: 'asset/resource',
         },
     ],
-}
+},
+devtool: 'inline-source-map',
+plugins: [
+    
+        new HtmlWebpackPlugin({
+          title: 'To Do Lists',
+          filename: 'index.html',
+          template: 'src/index.html'
+        })
+      
+],
+
 };
