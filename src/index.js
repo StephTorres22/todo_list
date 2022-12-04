@@ -1,5 +1,5 @@
 import { Project } from './classes';
-import { submitProjectButton, addProjectButton, showProjectModal, projectDescription, projectTitle } from './DOMManipulation';
+import { submitProjectButton, addProjectButton, showProjectModal, projectDescription, projectTitle, sideBar, closeProjectModal } from './DOMManipulation';
 
 
 
@@ -11,6 +11,7 @@ const projectList = [];
 
 addProjectButton.addEventListener('click', showProjectModal);
 submitProjectButton.addEventListener('click', addProjectToList);
+/* submitProjectButton.addEventListener('click', showLocalStorage); */
  
 
 
@@ -21,8 +22,16 @@ function addProjectToList(){
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToStorage();
+    closeProjectModal();
 
 }
+
+/* function showLocalStorage(){
+    
+    for (let i = 0; i < localStorage.length; i++){
+        main.appendChild(localStorage.getItem(localStorage.key(i)))
+    }
+} */
 
 
 
