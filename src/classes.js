@@ -1,6 +1,6 @@
 import './style.css'
 import { projectList } from './index'
-import { sideBar, projectTitle, projectDescription } from './DOMManipulation';
+import * as domModule from './DOMManipulation';
 
 
 export class Project{
@@ -15,21 +15,30 @@ export class Project{
 
         console.log(`${this.title}, ${this.description}`);
         let newProject = document.createElement('div');
-        sideBar.appendChild(newProject);
+        domModule.sideBar.appendChild(newProject);
         newProject.classList.add('sideBarCard');
         
         let pTitle = document.createElement('h4');
         newProject.appendChild(pTitle);
         pTitle.innerText = `${this.title}`;
+
+        let pDescription = document.createElement('p');
+        newProject.appendChild(pDescription);
+        pDescription.innerText = `${this.description}`;
         
         let removeButton = document.createElement('button');
         newProject.appendChild(removeButton);
         removeButton.innerText = 'Remove Project';
         removeButton.addEventListener('click', () => {
-            sideBar.removeChild(newProject);
+            domModule.sideBar.removeChild(newProject);
             projectList.splice(Project);
             this.removePorjectFromStorage();
         })
+
+        let newTaskButton = document.createElement('button');
+        newProject.appendChild(newTaskButton);
+        newTaskButton.innerText = 'Add Task';
+        newTaskButton.addEventListener('click', domModule.showTaskModal);
 
 
     }
@@ -49,6 +58,15 @@ export class Project{
         localStorage.removeItem(`${this.title}, ${this.description}`);
 
     }
+
+
+   /*  addTask(){
+
+        let newTask = 
+
+
+    } */
+
 
 
 

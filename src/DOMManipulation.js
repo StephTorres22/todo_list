@@ -1,35 +1,59 @@
 
 import './style.css';
-import './classes';
-import { Project } from './classes';
-import { projectList } from './index';
-
-const projectForm = document.getElementById('projectForm');
-const main = document.querySelector('.main');
-const sideBar = document.querySelector('.sideBar');
-const addProjectButton = document.getElementById('addProject');
-const addProjectModal = document.getElementById('projectFormModal');
-const submitProjectButton = document.getElementById('submitProjectButton');
-const projectTitle = document.getElementById('projectTitle');
-const projectDescription = document.getElementById('description');
+import * as classes from './classes';
 
 
 
-function showProjectModal(){
+export const main = document.querySelector('.main');
+export const sideBar = document.querySelector('.sideBar');
+
+
+/* Project form elements */
+export const addProjectModal = document.getElementById('projectFormModal');
+export const projectForm = document.getElementById('projectForm');
+export const addProjectButton = document.getElementById('addProject');
+export const projectTitle = document.getElementById('projectTitle');
+export const projectDescription = document.getElementById('description');
+export const submitProjectButton = document.getElementById('submitProjectButton');
+export const closeProjectModalButton = document.getElementById('closeProjectModal');
+
+/* Task form elements */
+export const taskFormModal = document.getElementById('taskFormModal');
+export const taskForm = document.getElementById('taskForm');
+export const taskTitle = document.getElementById('taskTitle');
+export const taskDescription = document.getElementById('taskDescription');
+export const taskDueDate = document.getElementById('dueDate');
+export const submitTaskButton = document.getElementById('submitTaskButton');
+export const closeTaskModalButton = document.getElementById('closeTaskModal');
+
+
+/* Project Form Modal Funtionality */
+export function showProjectModal(){
 
     addProjectModal.showModal();
 
 }
 
-function closeProjectModal(){
+export function closeProjectModal(){
 
     addProjectModal.close(); // Needs this to close modal because default behaviour is disabled
     projectForm.reset() // resets form as default behaviour is disabled.
 }
 
+/* Task Form Modal functionality */
+export function showTaskModal(){
+
+    taskFormModal.showModal();
+
+}
+
+export function closeTaskModal(){
+
+    taskFormModal.close();
+    taskForm.reset();
+}
 
 
-export {addProjectButton, submitProjectButton, showProjectModal, sideBar, projectTitle, projectDescription, closeProjectModal, main }
 
 
 
