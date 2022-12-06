@@ -32,7 +32,7 @@ export class Project{
         removeButton.addEventListener('click', () => {
             domModule.sideBar.removeChild(newProject);
             projectList.splice(Project);
-            this.removePorjectFromStorage();
+            this.removeProjectFromStorage();
         })
 
         let newTaskButton = document.createElement('button');
@@ -53,24 +53,21 @@ export class Project{
     
     }
 
-    removePorjectFromStorage(){
+    removeProjectFromStorage(){
 
         localStorage.removeItem(`${this.title}, ${this.description}`);
 
     }
 
 
-    addTaskToProject(){
-
-        
+    addTaskToProject(){        
         
         let newTask = new Task(`${domModule.taskTitle.value}`, 
                                 `${domModule.taskDescription.value}`)
 
         this.projectArray.push(newTask);
         console.log(this.projectArray);
-
-        
+        console.log(projectList);      
 
 
     }

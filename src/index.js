@@ -15,10 +15,6 @@ import { Project, Task } from './classes';
 import * as domModule from './DOMManipulation';
 
 
-
-
-
-
 const projectList = []
 
 
@@ -29,10 +25,6 @@ domModule.submitProjectButton.addEventListener('click', function(e){
     e.preventDefault();/* this stops validation happening too. */
 });
 
-
-/* submitProjectButton.addEventListener('click', showLocalStorage); */
-
- 
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
 
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
@@ -50,6 +42,7 @@ function addProjectToList(){
     domModule.submitTaskButton.addEventListener('click', function(e){
         e.preventDefault();
         newProject.addTaskToProject();
+        domModule.closeTaskModal();
 
     })
     
