@@ -65,6 +65,7 @@ body{
     height: 15rem;
     padding: .5rem;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 /* TOP BAR STYLES */

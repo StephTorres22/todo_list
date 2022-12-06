@@ -23,13 +23,13 @@ function showProjectModal(){
 
 function closeProjectModal(){
 
-    addProjectModal.close();
-    projectForm.reset();
+    addProjectModal.close(); // Needs this to close modal because default behaviour is disabled
+    projectForm.reset() // resets form as default behaviour is disabled.
 }
 
 
 
-export {addProjectButton, submitProjectButton, showProjectModal, sideBar, projectTitle, projectDescription, closeProjectModal}
+export {addProjectButton, submitProjectButton, showProjectModal, sideBar, projectTitle, projectDescription, closeProjectModal, main }
 
 
 

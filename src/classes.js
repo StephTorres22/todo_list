@@ -17,9 +17,20 @@ export class Project{
         let newProject = document.createElement('div');
         sideBar.appendChild(newProject);
         newProject.classList.add('sideBarCard');
+        
         let pTitle = document.createElement('h4');
         newProject.appendChild(pTitle);
         pTitle.innerText = `${this.title}`;
+        
+        let removeButton = document.createElement('button');
+        newProject.appendChild(removeButton);
+        removeButton.innerText = 'Remove Project';
+        removeButton.addEventListener('click', () => {
+            sideBar.removeChild(newProject);
+            projectList.splice(Project);
+            this.removePorjectFromStorage();
+        })
+
 
     }
 
@@ -31,6 +42,12 @@ export class Project{
 
         localStorage.setItem(`${this.title}, ${this.description}`, `${this.projectArray}`);
     
+    }
+
+    removePorjectFromStorage(){
+
+        localStorage.removeItem(`${this.title}, ${this.description}`);
+
     }
 
 
