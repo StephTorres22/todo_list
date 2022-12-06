@@ -28,6 +28,8 @@ domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
     e.preventDefault();/* this stops validation happening too. */
 });
+
+
 /* submitProjectButton.addEventListener('click', showLocalStorage); */
 
  
@@ -44,6 +46,12 @@ function addProjectToList(){
     newProject.addProjectToStorage();
     domModule.closeProjectModal();
     console.log(projectList);
+
+    domModule.submitTaskButton.addEventListener('click', function(e){
+        e.preventDefault();
+        newProject.addTaskToProject();
+
+    })
     
 
 }

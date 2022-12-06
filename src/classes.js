@@ -60,12 +60,24 @@ export class Project{
     }
 
 
-   /*  addTask(){
+    addTaskToProject(){
 
-        let newTask = 
+        
+        
+        let newTask = new Task(`${domModule.taskTitle.value}`, 
+                                `${domModule.taskDescription.value}`)
+
+        this.projectArray.push(newTask);
+        console.log(this.projectArray);
+
+        
 
 
-    } */
+    }
+
+    
+
+    
 
 
 
