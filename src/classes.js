@@ -33,12 +33,17 @@ export class Project{
             domModule.sideBar.removeChild(newProject);
             projectList.splice(Project);
             this.removeProjectFromStorage();
+            
         })
 
         let newTaskButton = document.createElement('button');
         newProject.appendChild(newTaskButton);
         newTaskButton.innerText = 'Add Task';
         newTaskButton.addEventListener('click', domModule.showTaskModal);
+        newTaskButton.addEventListener('click', () => {
+            console.log(this.findProjectIndex());
+        });
+        
 
 
     }
@@ -58,7 +63,11 @@ export class Project{
         projectList[projectIndex].projectArray.push(newTask);
         console.log(projectList, this.projectArray, projectIndex);
 
+        
+
     }
+
+    
 
     
 

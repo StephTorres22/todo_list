@@ -43,15 +43,43 @@ function addProjectToList(){
     newProject.displayProjectData();
     newProject.addProjectToStorage();
     domModule.closeProjectModal();
-    console.log(projectList, newProject.findProjectIndex());
+   // console.log(projectList, newProject.findProjectIndex());
     
 
     domModule.submitTaskButton.addEventListener('click', function(e){
         
+        changeTaskButtonID();
+        if(getTaskButtonID() == newProject.findProjectIndex()){
+
+
         newProject.addTaskToProject();
         domModule.closeTaskModal();
         e.preventDefault();
+        console.log(e.target.id)
+            
+
+        }
+
+        
+
+        
     })
+
+    function changeTaskButtonID(){
+
+        let ID = newProject.findProjectIndex()
+        domModule.submitTaskButton.setAttribute('id', ID);
+
+
+    }
+
+    function getTaskButtonID(){
+
+        return ID = domModule.submitTaskButton.getAttribute('id');
+        
+    }
+
+
 
     
 
