@@ -23,7 +23,7 @@ export const taskForm = document.getElementById('taskForm');
 export const taskTitle = document.getElementById('taskTitle');
 export const taskDescription = document.getElementById('taskDescription');
 export const taskDueDate = document.getElementById('dueDate');
-export const submitTaskButton = document.getElementById('submitTaskButton');
+export const submitTaskButton = document.querySelector('.submitTask');
 export const closeTaskModalButton = document.getElementById('closeTaskModal');
 
 
@@ -41,6 +41,10 @@ export function closeProjectModal(){
 }
 
 /* Task Form Modal functionality */
+
+/* export function createTaskForm{
+    
+} */
 export function showTaskModal(){
 
     taskFormModal.showModal();

@@ -1,7 +1,7 @@
 
 /* TODO:
 
--Need form validation to stop empty projects being added to projectList
+-Need form validation to stop empty projects and tasks being added.
 
 -Continue styling on projectCards and buttons
 
@@ -19,13 +19,18 @@ const projectList = []
 
 
 domModule.addProjectButton.addEventListener('click', domModule.showProjectModal);
+
 //stops submit button from refreshing the page after each submit
 domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
     e.preventDefault();/* this stops validation happening too. */
 });
 
+
+
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
+
+
 
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
 
@@ -40,11 +45,23 @@ function addProjectToList(){
     console.log(projectList);
 
     domModule.submitTaskButton.addEventListener('click', function(e){
-        e.preventDefault();
-        newProject.addTaskToProject();
+        addTaskToProject();
         domModule.closeTaskModal();
-
+        e.preventDefault();
     })
+
+    function addTaskToProject(){
+
+        let newTask = new Task(`${domModule.taskTitle.value}`, 
+                                `${domModule.taskDescription.value}`);
+
+        let projectIndex = newProject.findProjectIndex();                        
+        projectList[projectIndex].projectArray.push(newTask);
+        console.log(projectList, newProject.projectArray, projectIndex);
+    }
+
+   
+    
     
 
 }

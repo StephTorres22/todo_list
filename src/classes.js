@@ -43,6 +43,14 @@ export class Project{
 
     }
 
+    findProjectIndex(){
+
+        return projectList.map((project) => project.title).indexOf(`${this.title}`);
+
+    }
+
+   
+
     
 
     addProjectToStorage(){
@@ -60,7 +68,7 @@ export class Project{
     }
 
 
-    addTaskToProject(){        
+ /*    addTaskToProject(){        
         
         let newTask = new Task(`${domModule.taskTitle.value}`, 
                                 `${domModule.taskDescription.value}`)
@@ -69,8 +77,11 @@ export class Project{
         console.log(this.projectArray);
         console.log(projectList);      
 
+        //think this is where the issue might be. 
+        //doesn't specify which project to add to.
 
-    }
+
+    } */
 
     
 
