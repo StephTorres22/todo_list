@@ -49,6 +49,21 @@ export class Project{
 
     }
 
+    addTaskToProject(){
+
+        let newTask = new Task(`${domModule.taskTitle.value}`, 
+                                `${domModule.taskDescription.value}`);
+
+        let projectIndex = this.findProjectIndex();                        
+        projectList[projectIndex].projectArray.push(newTask);
+        console.log(projectList, this.projectArray, projectIndex);
+
+    }
+
+    
+
+
+    
    
 
     

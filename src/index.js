@@ -32,6 +32,7 @@ domModule.closeProjectModalButton.addEventListener('click', domModule.closeProje
 
 
 
+
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
 
 function addProjectToList(){
@@ -42,23 +43,19 @@ function addProjectToList(){
     newProject.displayProjectData();
     newProject.addProjectToStorage();
     domModule.closeProjectModal();
-    console.log(projectList);
+    console.log(projectList, newProject.findProjectIndex());
+    
 
     domModule.submitTaskButton.addEventListener('click', function(e){
-        addTaskToProject();
+        
+        newProject.addTaskToProject();
         domModule.closeTaskModal();
         e.preventDefault();
     })
 
-    function addTaskToProject(){
+    
 
-        let newTask = new Task(`${domModule.taskTitle.value}`, 
-                                `${domModule.taskDescription.value}`);
-
-        let projectIndex = newProject.findProjectIndex();                        
-        projectList[projectIndex].projectArray.push(newTask);
-        console.log(projectList, newProject.projectArray, projectIndex);
-    }
+    
 
    
     
