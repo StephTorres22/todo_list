@@ -6,12 +6,16 @@ import * as classes from './classes';
 
 export const main = document.querySelector('.main');
 export const sideBar = document.querySelector('.sideBar');
+export const addProjectButton = document.getElementById('addProject');
+export const addTaskSVG = document.getElementById('addTaskSVG');
+
+addTaskSVG.addEventListener('click', showTaskModal);
 
 
 /* Project form elements */
 export const addProjectModal = document.getElementById('projectFormModal');
 export const projectForm = document.getElementById('projectForm');
-export const addProjectButton = document.getElementById('addProject');
+
 export const projectTitle = document.getElementById('projectTitle');
 export const projectDescription = document.getElementById('description');
 export const submitProjectButton = document.getElementById('submitProjectButton');
@@ -56,6 +60,31 @@ export function closeTaskModal(){
     taskFormModal.close();
     taskForm.reset();
 }
+
+/* export function createTaskForm(){
+
+    const taskFormModal = document.createElement('dialog');
+    taskFormModal.setAttribute('id', 'taskFormModal');
+    const taskForm = document.createElement('form');
+
+    taskFormModal.appendChild(taskForm);
+
+    const taskTitle = document.createElement('input');
+    taskTitle.setAttribute('type', 'text');
+    taskForm.appendChild(taskTitle);
+
+    const taskDescription = document.createElement('input');
+    taskDescription.setAttribute('type', 'text');
+    taskForm.appendChild(taskDescription);
+
+    const submit = document.createElement('button');
+    submit.setAttribute('type', 'submit');
+    taskForm.appendChild(submit);
+
+    const close = document.createElement('button');
+    close.setAttribute('type', 'button');
+    close.addEventListener('click', closeTaskModal);
+} */
 
 
 

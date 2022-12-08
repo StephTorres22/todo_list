@@ -43,6 +43,8 @@ export class Project{
         newTaskButton.addEventListener('click', () => {
             console.log(this.findProjectIndex());
         });
+
+        
         
 
 
@@ -66,6 +68,8 @@ export class Project{
         
 
     }
+
+    
 
     
 

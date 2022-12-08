@@ -46,7 +46,7 @@ function addProjectToList(){
    // console.log(projectList, newProject.findProjectIndex());
     
 
-    domModule.submitTaskButton.addEventListener('click', function(e){
+    /* domModule.submitTaskButton.addEventListener('click', function(e){
         
         changeTaskButtonID();
         if(getTaskButtonID() == newProject.findProjectIndex()){
@@ -63,9 +63,9 @@ function addProjectToList(){
         
 
         
-    })
+    }) */
 
-    function changeTaskButtonID(){
+/*     function changeTaskButtonID(){
 
         let ID = newProject.findProjectIndex()
         domModule.submitTaskButton.setAttribute('id', ID);
@@ -75,10 +75,12 @@ function addProjectToList(){
 
     function getTaskButtonID(){
 
-        return ID = domModule.submitTaskButton.getAttribute('id');
+        let ID  = domModule.submitTaskButton.getAttribute('id');
+
+        return parseInt(ID)
         
     }
-
+ */
 
 
     
