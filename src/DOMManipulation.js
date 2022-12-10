@@ -27,6 +27,7 @@ export const taskForm = document.getElementById('taskForm');
 export const taskTitle = document.getElementById('taskTitle');
 export const taskDescription = document.getElementById('taskDescription');
 export const taskDueDate = document.getElementById('dueDate');
+export const projectDropDownList = document.getElementById('projectListDropDown');
 export const submitTaskButton = document.querySelector('.submitTask');
 export const closeTaskModalButton = document.getElementById('closeTaskModal');
 

@@ -50,6 +50,16 @@ export class Project{
 
     }
 
+    addProjectToDropDownSelection(){
+
+        let newProjectOption = document.createElement('option');
+        newProjectOption.setAttribute('value', `${this.title}`);
+        newProjectOption.setAttribute('id', `${this.findProjectIndex()}`);
+        domModule.projectDropDownList.appendChild(newProjectOption);
+        newProjectOption.innerText = `${this.title}`;
+
+    }
+
     findProjectIndex(){
 
         return projectList.map((project) => project.title).indexOf(`${this.title}`);
@@ -68,6 +78,8 @@ export class Project{
         
 
     }
+
+
 
     
 

@@ -41,6 +41,7 @@ function addProjectToList(){
     let newProject = new Project(`${domModule.projectTitle.value}`, `${domModule.projectDescription.value}`);
     projectList.push(newProject);
     newProject.displayProjectData();
+    newProject.addProjectToDropDownSelection();
     newProject.addProjectToStorage();
     domModule.closeProjectModal();
    // console.log(projectList, newProject.findProjectIndex());
