@@ -46,30 +46,36 @@ function addProjectToList(){
    // newProject.addProjectToStorage();
     domModule.closeProjectModal();   
     
-     
-  
-
-
-
-  
-
-    
-
-    
+      
 }
 
 
 
+function findProjectIndex(title){
 
+    title = domModule.projectDropDownList.value
+    let index = projectList.map((project) => project.title).indexOf(`${title}`);
+    return index
+}
 
-function addTask(){
+function addTask(index){
+
+    index = findProjectIndex();
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                         `${domModule.taskDescription.value}`);
 
-    projectList[].projectArray.push(newTask);
+    projectList[index].projectArray.push(newTask);
 
 }
+
+domModule.submitTaskButton.addEventListener('click', (e) => {
+
+    addTask();
+    domModule.closeTaskModal();
+    e.preventDefault();
+
+})
 
 
 

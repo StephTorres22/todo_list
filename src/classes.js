@@ -47,7 +47,7 @@ export class Project{
         
     }
 
-    /* Adds new selection option to task form for each new project */
+    /* Adds new selection option to task form for each new project instance */
     addProjectToDropDownSelection(){
 
         let newProjectOption = document.createElement('option');
@@ -62,6 +62,7 @@ export class Project{
     findProjectIndex(){
 
         let index = projectList.map((project) => project.title).indexOf(`${this.title}`);
+        //console.log(index);
         return index;
     }
     
