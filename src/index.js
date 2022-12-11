@@ -46,70 +46,12 @@ function addProjectToList(){
    // newProject.addProjectToStorage();
     domModule.closeProjectModal();   
     
-    /* domModule.submitTaskButton.addEventListener('click', (e) =>{
-
-       
-        newProject.addTaskToProject(); // this method is not working
-        domModule.closeTaskModal();
-        e.preventDefault();
-        
-    
-    }) */
-
-  /*   domModule.submitTaskButton.addEventListener('click', (e) => {
-        
-        newProject.checkSelectAddTask();
-        e.preventDefault();
-        domModule.closeTaskModal();  
-        
-    })         */  
-    
-   // console.log(projectList, newProject.findProjectIndex());
-    
-/* 
-    domModule.submitTaskButton.addEventListener('click', function(e){
-        
-        changeTaskButtonID();
-        if(getTaskButtonID() == newProject.findProjectIndex()){
-
-
-      //  newProject.addTaskToProject();
-       // domModule.closeTaskModal();
-        e.preventDefault();
-        console.log(e.target.id)
-            
-
-        }     
-    })
-
-    function changeTaskButtonID(){
-
-        let ID = newProject.findProjectIndex()
-        domModule.submitTaskButton.setAttribute('id', ID);
-
-
-    }
-
-    function getTaskButtonID(){
-
-        let ID  = domModule.submitTaskButton.getAttribute('id');
-
-        return parseInt(ID)
-        
-    } */
+     
+  
 
 
 
-}
-
-export function whichSelection(){
-
-    domModule.projectDropDownList.addEventListener('input', (e) => {
-        let selection = e.target
-        console.log(selection.value);
-        return selection.value
-        
-    })
+  
 
     
 
@@ -118,55 +60,22 @@ export function whichSelection(){
 
 
 
-function getProjectIndex(title){
 
-    let index = projectList.map((project) => project.title).indexOf(`${title}`);
-    console.log(index)
-    return index
-
-}
 
 function addTask(){
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                         `${domModule.taskDescription.value}`);
 
-    projectList[`${whichSelection()}`].projectArray.push(newTask);
+    projectList[].projectArray.push(newTask);
 
 }
 
-domModule.submitTaskButton.addEventListener('click', (e) =>{
-
-    addTask();
-    domModule.closeTaskModal();
-    e.preventDefault();
-})
 
 
 
-/* export function getSelectOption(){
 
-    domModule.projectDropDownList.addEventListener('input', (e) => {    
 
-        let select = e.target;
-        console.log(select.value);
-        if (select == )  
-
-        
-    
-    }) 
-
-} */
-
-/* function showProjectList(){
-
-    projectList.forEach((project) => {
-        let item = document.createElement('div');
-        item.innerText = project;
-        main.appendChild(item);
-    })
-    //this creates duplicates
-} */
 
 
 

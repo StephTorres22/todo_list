@@ -15,6 +15,8 @@ export class Project{
     
     displayProjectData(){
 
+        /* Creates new card for each new project */
+
         console.log(`${this.title}, ${this.description}`);
         let newProject = document.createElement('div');
         domModule.sideBar.appendChild(newProject);
@@ -42,16 +44,10 @@ export class Project{
         newProject.appendChild(newTaskButton);
         newTaskButton.innerText = 'Add Task';
         newTaskButton.addEventListener('click', domModule.showTaskModal);
-        newTaskButton.addEventListener('click', () => {
-
-            whichSelection();    
-            this.findProjectIndex(whichSelection());        
-            console.log(this.findProjectIndex());
-        });
-
+        
     }
 
-
+    /* Adds new selection option to task form for each new project */
     addProjectToDropDownSelection(){
 
         let newProjectOption = document.createElement('option');
@@ -66,26 +62,9 @@ export class Project{
     findProjectIndex(){
 
         let index = projectList.map((project) => project.title).indexOf(`${this.title}`);
-        console.log(index);
         return index;
     }
     
-    addTaskToProject(){       
-
-        let newTask = new Task(`${domModule.taskTitle.value}`, 
-                             `${domModule.taskDescription.value}`);
-        
-        //let optionValue = domModule.projectDropDownList.value; 
-        
-        //let projectIndex = this.findProjectIndex();      
-        
-
-        projectList[this.findProjectIndex()].projectArray.push(newTask);
-        console.log(projectList, this.projectArray);              
-        
-    } 
-    
-
     addProjectToStorage(){
 
         /* Adds project to local storage with title and description as key and array as value pair */
@@ -101,41 +80,10 @@ export class Project{
     }
 
 
- /*    addTaskToProject(){        
-        
-        let newTask = new Task(`${domModule.taskTitle.value}`, 
-                                `${domModule.taskDescription.value}`)
-
-        this.projectArray.push(newTask);
-        console.log(this.projectArray);
-        console.log(projectList);      
-
-        //think this is where the issue might be. 
-        //doesn't specify which project to add to.
-
-
-    } */
+ 
 
     
- /*  checkSelectAddTask(){
 
-        domModule.projectDropDownList.addEventListener('input', (ev) => {
-
-            let select = ev.target
-            if (select.value == `${this.title}`){
-                let newTask = new Task(`${domModule.taskTitle.value}`, 
-                                `${domModule.taskDescription.value}`);
-
-                this.projectArray.push(newTask)
-
-            }
-
-        }) */
-
-    //        console.log(projectList, this.projectArray);
-
- //   }
-    
 
 
 
