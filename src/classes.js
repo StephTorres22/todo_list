@@ -1,14 +1,16 @@
 import './style.css'
-import { projectList } from './index'
+import { projectList, whichSelection } from './index'
 import * as domModule from './DOMManipulation';
 
 
 export class Project{
 
-    constructor(title, description){
+    constructor(title, description, index){
         this.title = title;
         this.description = description;
         this.projectArray = [];
+        this.index = index;
+
     }     
     
     displayProjectData(){
@@ -41,14 +43,14 @@ export class Project{
         newTaskButton.innerText = 'Add Task';
         newTaskButton.addEventListener('click', domModule.showTaskModal);
         newTaskButton.addEventListener('click', () => {
+
+            whichSelection();    
+            this.findProjectIndex(whichSelection());        
             console.log(this.findProjectIndex());
         });
 
-        
-        
-
-
     }
+
 
     addProjectToDropDownSelection(){
 
@@ -59,38 +61,29 @@ export class Project{
         newProjectOption.innerText = `${this.title}`;
 
     }
+ 
 
     findProjectIndex(){
 
-        return projectList.map((project) => project.title).indexOf(`${this.title}`);
-
+        let index = projectList.map((project) => project.title).indexOf(`${this.title}`);
+        console.log(index);
+        return index;
     }
-
-    addTaskToProject(){
+    
+    addTaskToProject(){       
 
         let newTask = new Task(`${domModule.taskTitle.value}`, 
-                                `${domModule.taskDescription.value}`);
-
-        let projectIndex = this.findProjectIndex();                        
-        projectList[projectIndex].projectArray.push(newTask);
-        console.log(projectList, this.projectArray, projectIndex);
-
+                             `${domModule.taskDescription.value}`);
+        
+        //let optionValue = domModule.projectDropDownList.value; 
+        
+        //let projectIndex = this.findProjectIndex();      
         
 
-    }
-
-
-
-    
-
-    
-
-    
-
-
-    
-   
-
+        projectList[this.findProjectIndex()].projectArray.push(newTask);
+        console.log(projectList, this.projectArray);              
+        
+    } 
     
 
     addProjectToStorage(){
@@ -124,7 +117,24 @@ export class Project{
     } */
 
     
+ /*  checkSelectAddTask(){
 
+        domModule.projectDropDownList.addEventListener('input', (ev) => {
+
+            let select = ev.target
+            if (select.value == `${this.title}`){
+                let newTask = new Task(`${domModule.taskTitle.value}`, 
+                                `${domModule.taskDescription.value}`);
+
+                this.projectArray.push(newTask)
+
+            }
+
+        }) */
+
+    //        console.log(projectList, this.projectArray);
+
+ //   }
     
 
 
@@ -148,7 +158,12 @@ export class Task{
 
     /* method to remove from array */
 
+   
+
 }
+
+window.Task = Task;
+window.Project = Project;
 
 
 
