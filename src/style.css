@@ -68,6 +68,10 @@ body{
     margin-bottom: 1rem;
 }
 
+.removeProjectButton{
+    background-color: red;
+}
+
 /* TOP BAR STYLES */
 .topBar{
 

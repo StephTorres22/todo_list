@@ -12,6 +12,11 @@ export const addTaskSVG = document.getElementById('addTaskSVG');
 addTaskSVG.addEventListener('click', showTaskModal);
 
 
+
+export const projectCardArray = Array.from(document.querySelectorAll('.sideBarCard'));
+export const removeProjectButtonArray = Array.from(document.querySelectorAll('.removerProjectButton'))
+
+
 /* Project form elements */
 export const addProjectModal = document.getElementById('projectFormModal');
 export const projectForm = document.getElementById('projectForm');

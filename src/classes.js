@@ -29,14 +29,21 @@ export class Project{
         let pDescription = document.createElement('p');
         newProject.appendChild(pDescription);
         pDescription.innerText = `${this.description}`;
-        
+
+        let pArray = document.createElement('div');
+        newProject.appendChild(pArray);
+
+        console.log(Array.from(document.querySelectorAll('.sideBarCard')))        
+        /* This is removing all projects from the list! */
         let removeButton = document.createElement('button');
+        removeButton.classList.add('removeProjectButton');
         newProject.appendChild(removeButton);
         removeButton.innerText = 'Remove Project';
         removeButton.addEventListener('click', () => {
             domModule.sideBar.removeChild(newProject);
-            projectList.splice(Project);
-            this.removeProjectFromStorage();
+            projectList.splice(`${this.title, this.description, this.projectArray}`);
+           // this.removeProjectFromStorage();
+           console.log(projectList)
             
         })
 
@@ -78,6 +85,12 @@ export class Project{
 
         localStorage.removeItem(`${this.title}, ${this.description}`);
 
+    }
+
+    removeProjectFromProjectList(){
+
+
+        
     }
 
 

@@ -5,11 +5,13 @@
 
 -Continue styling on projectCards and buttons
 
--Add task to project button
+-Display projectArray within each project task
+
+-Remove button is removing all instance from projectList, rectify
 
 -Accessing local storage so existing project are displayed even after refresh
 
--New form for task adding*/
+*/
 
 import { Project, Task } from './classes';
 import * as domModule from './DOMManipulation';
@@ -18,6 +20,8 @@ import * as domModule from './DOMManipulation';
 const projectList = []
 
 
+/* Project buttons and form listeners */
+
 domModule.addProjectButton.addEventListener('click', domModule.showProjectModal);
 
 //stops submit button from refreshing the page after each submit
@@ -25,15 +29,20 @@ domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
     e.preventDefault();/* this stops validation happening too. */
 });
-
-
-
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
 
-     
 
+/* Task form listeners */     
+domModule.submitTaskButton.addEventListener('click', (e) => {
 
+    addTask();
+    domModule.closeTaskModal();
+    e.preventDefault();
+
+})
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
+
+
 
 function addProjectToList(){
 
@@ -42,22 +51,23 @@ function addProjectToList(){
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToDropDownSelection();
-    newProject.findProjectIndex();    
+        
    // newProject.addProjectToStorage();
     domModule.closeProjectModal();   
     
       
 }
 
+/* Uses value from drop selection in task form to find index of target project instance  */
+function findProjectIndex(projectTitle){
 
-
-function findProjectIndex(title){
-
-    title = domModule.projectDropDownList.value
-    let index = projectList.map((project) => project.title).indexOf(`${title}`);
-    return index
+    projectTitle = domModule.projectDropDownList.value;
+    let index = projectList.map((project) => project.title).indexOf(`${projectTitle}`);
+    return index;
 }
 
+
+/* Uses index to push new task to desired project instance */
 function addTask(index){
 
     index = findProjectIndex();
@@ -69,13 +79,7 @@ function addTask(index){
 
 }
 
-domModule.submitTaskButton.addEventListener('click', (e) => {
 
-    addTask();
-    domModule.closeTaskModal();
-    e.preventDefault();
-
-})
 
 
 
