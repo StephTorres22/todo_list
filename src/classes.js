@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, whichSelection } from './index'
+import { projectList, removeProjectFromProjectList } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -19,6 +19,7 @@ export class Project{
 
         console.log(`${this.title}, ${this.description}`);
         let newProject = document.createElement('div');
+        
         domModule.sideBar.appendChild(newProject);
         newProject.classList.add('sideBarCard');
         
@@ -33,19 +34,21 @@ export class Project{
         let pArray = document.createElement('div');
         newProject.appendChild(pArray);
 
-        console.log(Array.from(document.querySelectorAll('.sideBarCard')))        
+        
+        //console.log(Array.from(document.querySelectorAll('.sideBarCard')))        
         /* This is removing all projects from the list! */
         let removeButton = document.createElement('button');
-        removeButton.classList.add('removeProjectButton');
+        
         newProject.appendChild(removeButton);
+        removeButton.classList.add('removeProjectButton');
         removeButton.innerText = 'Remove Project';
-        removeButton.addEventListener('click', () => {
-            domModule.sideBar.removeChild(newProject);
-            projectList.splice(`${this.title, this.description, this.projectArray}`);
-           // this.removeProjectFromStorage();
-           console.log(projectList)
-            
+       // removeButton.addEventListener('click', removeProjectFromProjectList);
+        removeButton.addEventListener('click', () =>{
+           domModule.sideBar.removeChild(newProject);
+           console.log(projectList);
         })
+
+           
 
         let newTaskButton = document.createElement('button');
         newProject.appendChild(newTaskButton);
@@ -53,6 +56,7 @@ export class Project{
         newTaskButton.addEventListener('click', domModule.showTaskModal);
         
     }
+
 
     /* Adds new selection option to task form for each new project instance */
     addProjectToDropDownSelection(){

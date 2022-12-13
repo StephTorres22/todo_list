@@ -53,7 +53,11 @@ function addProjectToList(){
     newProject.addProjectToDropDownSelection();
         
    // newProject.addProjectToStorage();
-    domModule.closeProjectModal();   
+    domModule.closeProjectModal(); 
+    removeProjectFromProjectList();  
+   // console.log(projectList)
+    
+    
     
       
 }
@@ -77,7 +81,31 @@ function addTask(index){
 
     projectList[index].projectArray.push(newTask);
 
+} 
+
+
+
+export function removeProjectFromProjectList(){
+
+        const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
+
+        /* this removes everything after the project is created
+     */
+        removeProjectButtonArray.forEach((button, index) => button.addEventListener('click', () => {
+        projectList.splice(index), 1}));
+                
+    
+        //need to include deleteCount for this to work properly!
+        //this is what was missing in books.js for library project.
+                console.log(projectList);
+
+        
+
 }
+
+
+
+
 
 
 
