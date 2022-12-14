@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectFromProjectList } from './index'
+import { projectList, removeProjectButtonArray } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -9,7 +9,7 @@ export class Project{
         this.title = title;
         this.description = description;
         this.projectArray = [];
-        this.index = index;
+    
 
     }     
     
@@ -39,13 +39,16 @@ export class Project{
         /* This is removing all projects from the list! */
         let removeButton = document.createElement('button');
         
+        
         newProject.appendChild(removeButton);
         removeButton.classList.add('removeProjectButton');
         removeButton.innerText = 'Remove Project';
+        removeProjectButtonArray.push(removeButton);
+        
        // removeButton.addEventListener('click', removeProjectFromProjectList);
         removeButton.addEventListener('click', () =>{
            domModule.sideBar.removeChild(newProject);
-           console.log(projectList);
+          // console.log(projectList);
         })
 
            

@@ -19,6 +19,29 @@ import * as domModule from './DOMManipulation';
 
 const projectList = []
 
+export const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
+
+function addListenerToRemoveButton(){
+    removeProjectButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
+        if(e.target == removeProjectButtonArray[index]){
+            projectList.splice(index, 1);
+            removeProjectButtonArray.splice(index, 1);
+            console.log(projectList, removeProjectButtonArray);
+            addListenerToRemoveButton();
+        }
+        
+        }));
+
+}
+/* Think this works, tests the target against the array of buttons, 
+    only executes splice if they are the same!
+    Only splices one element
+    Has to be called again to reinstate listeners!
+    Add to the submit button so listener is added straight to projects when created
+     
+ */
+
+
 
 /* Project buttons and form listeners */
 
@@ -27,6 +50,7 @@ domModule.addProjectButton.addEventListener('click', domModule.showProjectModal)
 //stops submit button from refreshing the page after each submit
 domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
+    addListenerToRemoveButton();
     e.preventDefault();/* this stops validation happening too. */
 });
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
@@ -51,10 +75,10 @@ function addProjectToList(){
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToDropDownSelection();
-        
+    console.log(removeProjectButtonArray);
    // newProject.addProjectToStorage();
     domModule.closeProjectModal(); 
-    removeProjectFromProjectList();  
+      
    // console.log(projectList)
     
     
@@ -85,23 +109,24 @@ function addTask(index){
 
 
 
-export function removeProjectFromProjectList(){
 
-        const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
+
+
+    
+        
 
         /* this removes everything after the project is created
      */
-        removeProjectButtonArray.forEach((button, index) => button.addEventListener('click', () => {
-        projectList.splice(index), 1}));
-                
+        
+        
+        //webdevsimpliefied global listener... try use that next time
     
         //need to include deleteCount for this to work properly!
         //this is what was missing in books.js for library project.
-                console.log(projectList);
 
         
 
-}
+
 
 
 
@@ -128,6 +153,7 @@ export function removeProjectFromProjectList(){
 // TODO: remember to delete this, this means you can test/ console
 //what's happening!
 window.projectList = projectList
+window.removeProjectButtonArray = removeProjectButtonArray
 
 
 
