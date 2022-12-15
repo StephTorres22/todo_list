@@ -1,15 +1,30 @@
 
-/* TODO:
+/* TODO: BRANCH NEWTASKBUTTON
 
--Need form validation to stop empty projects and tasks being added.
+-Remove dropdownlist from task form
 
--Continue styling on projectCards and buttons
+-Create function for large add task button, creates dropdown list with relevant attributes; class name and id,
+Keep the same logic so that task is added to correct/selected project via drop down.
 
--Display projectArray within each project task
+This function should remove dropdownlist on sumbit.
+Doing this so that only need one form for both add task methods.
 
--Remove button is removing all instance from projectList, rectify
+-Using similar logic to remove button, 
+    -on sumbitproject, new array for add task buttons created and updated
+    -listener on newtask button to set id attribute of submit task to index of new task button set as const
+    -nested if statement using e.target 
+    const submitTaksButtonId =
+    if (e.target == newTaskButtonArray[index]){
+        addTaskModal.open() or whatever it is
+        if (submitTaskButtonId == newTaskButtonArray[index]){
+            projeclist[index].push(newTask)
+        }
+    } 
+    Something like this to see if it works.
 
--Accessing local storage so existing project are displayed even after refresh
+    Not too sure, might not be nested if statement, but each one set to the different clickListeners
+
+-
 
 */
 
@@ -45,7 +60,9 @@ function addListenerToRemoveButton(){
 
 /* Project buttons and form listeners */
 
-domModule.addProjectButton.addEventListener('click', domModule.showProjectModal);
+domModule.addProjectButton.addEventListener('click', () =>{
+   
+    domModule.showProjectModal();});
 
 //stops submit button from refreshing the page after each submit
 domModule.submitProjectButton.addEventListener('click', function(e){
@@ -56,7 +73,13 @@ domModule.submitProjectButton.addEventListener('click', function(e){
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
 
 
-/* Task form listeners */     
+/* Task form listeners */  
+
+/* domModule.addTaskSVG.addEventListener('click', () => {
+    
+    domModule.showTaskModal();
+
+}) */
 domModule.submitTaskButton.addEventListener('click', (e) => {
 
     addTask();
@@ -68,6 +91,8 @@ domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModa
 
 
 
+
+
 function addProjectToList(){
 
     
@@ -75,7 +100,7 @@ function addProjectToList(){
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToDropDownSelection();
-    console.log(removeProjectButtonArray);
+
    // newProject.addProjectToStorage();
     domModule.closeProjectModal(); 
       
@@ -89,7 +114,7 @@ function addProjectToList(){
 /* Uses value from drop selection in task form to find index of target project instance  */
 function findProjectIndex(projectTitle){
 
-    projectTitle = domModule.projectDropDownList.value;
+    projectTitle = domModule.createDropDownList.projectDropDownList.value;
     let index = projectList.map((project) => project.title).indexOf(`${projectTitle}`);
     return index;
 }

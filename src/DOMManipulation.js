@@ -33,7 +33,7 @@ export const taskForm = document.getElementById('taskForm');
 export const taskTitle = document.getElementById('taskTitle');
 export const taskDescription = document.getElementById('taskDescription');
 export const taskDueDate = document.getElementById('dueDate');
-export const projectDropDownList = document.getElementById('projectListDropDown');
+//export const projectDropDownList = document.getElementById('projectListDropDown');
 export const submitTaskButton = document.querySelector('.submitTask');
 export const closeTaskModalButton = document.getElementById('closeTaskModal');
 
@@ -68,30 +68,19 @@ export function closeTaskModal(){
     taskForm.reset();
 }
 
-/* export function createTaskForm(){
+export const createDropDownList = (() => {
 
-    const taskFormModal = document.createElement('dialog');
-    taskFormModal.setAttribute('id', 'taskFormModal');
-    const taskForm = document.createElement('form');
+    const projectDropDownList = document.createElement('select');
+    projectDropDownList.setAttribute('name', 'projectDropDownList');
+    projectDropDownList.setAttribute('id', 'projectDropDownList');
 
-    taskFormModal.appendChild(taskForm);
+    taskForm.appendChild(projectDropDownList);
+    return {projectDropDownList};
+})()
+/* Using an IIFE so that the selection exists straightaway and returns the projectDropDownList object */
 
-    const taskTitle = document.createElement('input');
-    taskTitle.setAttribute('type', 'text');
-    taskForm.appendChild(taskTitle);
 
-    const taskDescription = document.createElement('input');
-    taskDescription.setAttribute('type', 'text');
-    taskForm.appendChild(taskDescription);
 
-    const submit = document.createElement('button');
-    submit.setAttribute('type', 'submit');
-    taskForm.appendChild(submit);
-
-    const close = document.createElement('button');
-    close.setAttribute('type', 'button');
-    close.addEventListener('click', closeTaskModal);
-} */
 
 
 

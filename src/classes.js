@@ -67,7 +67,7 @@ export class Project{
         let newProjectOption = document.createElement('option');
         newProjectOption.setAttribute('value', `${this.title}`);
         newProjectOption.setAttribute('id', `${this.findProjectIndex()}`);
-        domModule.projectDropDownList.appendChild(newProjectOption);
+        domModule.createDropDownList.projectDropDownList.appendChild(newProjectOption);
         newProjectOption.innerText = `${this.title}`;
 
     }
@@ -94,11 +94,6 @@ export class Project{
 
     }
 
-    removeProjectFromProjectList(){
-
-
-        
-    }
 
 
  
