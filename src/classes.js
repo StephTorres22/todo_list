@@ -57,8 +57,13 @@ export class Project{
         newTaskButton.classList.add('newTaskButton');
         newProject.appendChild(newTaskButton);
         newTaskButton.innerText = 'Add Task';
-        newTaskButton.addEventListener('click', domModule.showTaskModal);
         newTaskButtonArray.push(newTaskButton);
+        newTaskButton.addEventListener('click', () => {
+            domModule.removeDropDownListFromTaskForm();
+            domModule.showTaskModal();
+        })
+        
+        
         
     }
 

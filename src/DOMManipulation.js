@@ -80,10 +80,21 @@ export const createDropDownList = (() => {
 /* Using an IIFE so that the selection exists straightaway and returns the projectDropDownList object */
 
 
+export function removeDropDownListFromTaskForm(){
+
+    //this should remove all options from select in task form
+    while (createDropDownList.projectDropDownList.firstChild){
+        createDropDownList.projectDropDownList.removeChild(createDropDownList.projectDropDownList.firstChild);
+    }
+
+    //this should remove dropDownList from form
+    taskForm.removeChild(createDropDownList.projectDropDownList);
+    
+}
 
 
 
-
+window.dropDownList = createDropDownList.projectDropDownList;
 
 
        
