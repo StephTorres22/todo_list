@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectButtonArray } from './index'
+import { projectList, removeProjectButtonArray, newTaskButtonArray } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -54,14 +54,16 @@ export class Project{
            
 
         let newTaskButton = document.createElement('button');
+        newTaskButton.classList.add('newTaskButton');
         newProject.appendChild(newTaskButton);
         newTaskButton.innerText = 'Add Task';
         newTaskButton.addEventListener('click', domModule.showTaskModal);
+        newTaskButtonArray.push(newTaskButton);
         
     }
 
 
-    /* Adds new selection option to task form for each new project instance */
+    /* Adds new selection option to task form for each new project instance  on creation*/
     addProjectToDropDownSelection(){
 
         let newProjectOption = document.createElement('option');

@@ -1,13 +1,18 @@
 
 /* TODO: BRANCH NEWTASKBUTTON
 
--Remove dropdownlist from task form
 
--Create function for large add task button, creates dropdown list with relevant attributes; class name and id,
-Keep the same logic so that task is added to correct/selected project via drop down.
+-create function to check whether dropDownList exists/is present within the DOM 
+before repopulating/recreating/reassigning it when addTaskSVG is clicked.
+
+-Will have to create an array of options so that can repopulate select tag. 
+    OR
+    forEach Project, using project.title, create new option within select.
+    will need to recreate select and add corresponding attributes to it.
 
 This function should remove dropdownlist on sumbit.
 Doing this so that only need one form for both add task methods.
+??MIGHT NOT WORK THIS WAY??
 
 -Using similar logic to remove button, 
     -on sumbitproject, new array for add task buttons created and updated
@@ -33,6 +38,8 @@ import * as domModule from './DOMManipulation';
 
 
 const projectList = []
+
+export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
 
 export const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
 
@@ -103,11 +110,7 @@ function addProjectToList(){
 
    // newProject.addProjectToStorage();
     domModule.closeProjectModal(); 
-      
-   // console.log(projectList)
-    
-    
-    
+     
       
 }
 
@@ -177,8 +180,9 @@ function addTask(index){
 
 // TODO: remember to delete this, this means you can test/ console
 //what's happening!
-window.projectList = projectList
-window.removeProjectButtonArray = removeProjectButtonArray
+window.projectList = projectList;
+window.removeProjectButtonArray = removeProjectButtonArray;
+window.newTaskButtonArray = newTaskButtonArray;
 
 
 

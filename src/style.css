@@ -68,6 +68,10 @@ body{
     margin-bottom: 1rem;
 }
 
+.newTaskButton{
+    background-color: green;
+}
+
 .removeProjectButton{
     background-color: red;
 }
