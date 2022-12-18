@@ -62,6 +62,7 @@ function addListenerToRemoveButton(){
 
 
 
+
 /* Project buttons and form listeners */
 
 domModule.addProjectButton.addEventListener('click', () =>{
@@ -72,6 +73,7 @@ domModule.addProjectButton.addEventListener('click', () =>{
 domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
     addListenerToRemoveButton();
+    changeTaskSubmitID();
     e.preventDefault();/* this stops validation happening too. */
 });
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
@@ -79,10 +81,13 @@ domModule.closeProjectModalButton.addEventListener('click', domModule.closeProje
 
 /* Task form listeners */  
 
-
 domModule.submitTaskButton.addEventListener('click', (e) => {
 
-    addTask();
+    if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
+        addTaskViaSVG();
+    } else {
+        addTaskViaProjectCard();
+    }   
     domModule.closeTaskModal();
     e.preventDefault();
 
@@ -107,6 +112,8 @@ function addProjectToList(){
       
 }
 
+/* ADDING TASK FUNCTIONS */
+
 /* Uses value from drop selection in task form to find index of target project instance  */
 function findProjectIndex(projectTitle){
 
@@ -117,7 +124,7 @@ function findProjectIndex(projectTitle){
 
 
 /* Uses index to push new task to desired project instance */
-function addTask(index){
+function addTaskViaSVG(index){
 
     index = findProjectIndex();
 
@@ -127,6 +134,33 @@ function addTask(index){
     projectList[index].projectArray.push(newTask);
 
 } 
+
+function changeTaskSubmitID(){
+    newTaskButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
+        if(e.target == newTaskButtonArray[index]){
+            domModule.submitTaskButton.setAttribute('id', `${index}`);         
+        }
+
+    }))
+}
+
+function addTaskViaProjectCard(index){
+
+    index = domModule.submitTaskButton.getAttribute('id');
+
+    let newTask = new Task(`${domModule.taskTitle.value}`, 
+    `${domModule.taskDescription.value}`);
+
+    projectList[index].projectArray.push(newTask);
+}
+
+
+
+
+
+
+
+
 
 
 

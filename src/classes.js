@@ -16,8 +16,6 @@ export class Project{
     displayProjectData(){
 
         /* Creates new card for each new project */
-
-        console.log(`${this.title}, ${this.description}`);
         let newProject = document.createElement('div');
         
         domModule.sideBar.appendChild(newProject);
@@ -35,8 +33,8 @@ export class Project{
         newProject.appendChild(pArray);
 
         
-        //console.log(Array.from(document.querySelectorAll('.sideBarCard')))        
-        /* This is removing all projects from the list! */
+           
+        
         let removeButton = document.createElement('button');
         
         
@@ -45,10 +43,9 @@ export class Project{
         removeButton.innerText = 'Remove Project';
         removeProjectButtonArray.push(removeButton);
         
-       // removeButton.addEventListener('click', removeProjectFromProjectList);
         removeButton.addEventListener('click', () =>{
            domModule.sideBar.removeChild(newProject);
-          // console.log(projectList);
+          
         })
 
            
@@ -59,11 +56,11 @@ export class Project{
         newTaskButton.innerText = 'Add Task';
         newTaskButtonArray.push(newTaskButton);
         newTaskButton.addEventListener('click', () => {
-            domModule.removeDropDownListFromTaskForm();
+            if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
+                domModule.removeDropDownListFromTaskForm();
+            }
             domModule.showTaskModal();
-        })
-        
-        
+        })    
         
     }
 
@@ -81,14 +78,14 @@ export class Project{
 
     removeProjectOptionFromDropDownSelection(){
 
-        
+
     }
  
 
     findProjectIndex(){
 
         let index = projectList.map((project) => project.title).indexOf(`${this.title}`);
-        //console.log(index);
+        
         return index;
     }
     
