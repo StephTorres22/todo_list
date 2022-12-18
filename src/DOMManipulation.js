@@ -10,7 +10,13 @@ export const sideBar = document.querySelector('.sideBar');
 export const addProjectButton = document.getElementById('addProject');
 export const addTaskSVG = document.getElementById('addTaskSVG');
 
-addTaskSVG.addEventListener('click', showTaskModal);
+addTaskSVG.addEventListener('click', () => {
+    /* this checks to see if taskForm already had dropdownlist as a child node
+    if yes, it just opens the modal, if not, repopulates and creates dropdown.
+    this stops duplication of options */
+    return (taskForm.contains(createDropDownList.projectDropDownList) ? showTaskModal() : repopulateDropDownList())
+
+});
 
 
 
@@ -89,6 +95,24 @@ export function removeDropDownListFromTaskForm(){
 
     //this should remove dropDownList from form
     taskForm.removeChild(createDropDownList.projectDropDownList);
+    
+}
+
+/* Takes project titles and recreates drop down list depending what projects are present */
+export function repopulateDropDownList(){    
+    
+    
+        taskForm.appendChild(createDropDownList.projectDropDownList);
+
+        projectList.forEach((project, index) => {
+            let newProjectOption = document.createElement('option');
+            newProjectOption.setAttribute('value', `${project.title}`);
+            newProjectOption.setAttribute('id', `${index}`);
+            newProjectOption.innerText = `${project.title}`;
+            createDropDownList.projectDropDownList.appendChild(newProjectOption);
+        })
+
+        showTaskModal();
     
 }
 

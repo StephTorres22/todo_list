@@ -1,9 +1,7 @@
 
 /* TODO: BRANCH NEWTASKBUTTON
 
-
--create function to check whether dropDownList exists/is present within the DOM 
-before repopulating/recreating/reassigning it when addTaskSVG is clicked.
+-when project is removed, so too should the option in projectdropdownlist
 
 -Will have to create an array of options so that can repopulate select tag. 
     OR
