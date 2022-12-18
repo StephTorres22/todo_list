@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectButtonArray, newTaskButtonArray } from './index'
+import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -58,7 +58,9 @@ export class Project{
         newTaskButton.addEventListener('click', () => {
             if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
                 domModule.removeDropDownListFromTaskForm();
+
             }
+            changeTaskSubmitID();
             domModule.showTaskModal();
         })    
         

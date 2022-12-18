@@ -1,30 +1,5 @@
 
-/* TODO: BRANCH NEWTASKBUTTON
 
-
-
-
-
-
-
--Using similar logic to remove button, 
-    -on sumbitproject, new array for add task buttons created and updated
-    -listener on newtask button to set id attribute of submit task to index of new task button set as const
-    -nested if statement using e.target 
-    const submitTaksButtonId =
-    if (e.target == newTaskButtonArray[index]){
-        addTaskModal.open() or whatever it is
-        if (submitTaskButtonId == newTaskButtonArray[index]){
-            projeclist[index].push(newTask)
-        }
-    } 
-    Something like this to see if it works.
-
-    Not too sure, might not be nested if statement, but each one set to the different clickListeners
-
--
-
-*/
 
 import { Project, Task } from './classes';
 import * as domModule from './DOMManipulation';
@@ -38,14 +13,21 @@ export const removeProjectButtonArray = Array.from(document.querySelectorAll('.r
 
 function addListenerToRemoveButton(){
     removeProjectButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
-        if(e.target == removeProjectButtonArray[index]){
+        if(e.target == removeProjectButtonArray[index]){ 
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
+
+            
+            let targetOption = document.getElementById(`${index}`);
+            console.log(targetOption);
+            domModule.createDropDownList.projectDropDownList.removeChild(targetOption);
+            domModule.repopulateDropDownList();
+            domModule.closeTaskModal();
             
             //each option has attribute id set to index of project in projectList
-            let targetOption = document.getElementById(`${index}`);
-            domModule.createDropDownList.projectDropDownList.removeChild(targetOption);
+            
+            
             addListenerToRemoveButton();
         }
         
@@ -73,6 +55,8 @@ domModule.addProjectButton.addEventListener('click', () =>{
 domModule.submitProjectButton.addEventListener('click', function(e){
     addProjectToList();
     addListenerToRemoveButton();
+    domModule.repopulateDropDownList();
+    domModule.closeTaskModal();
     changeTaskSubmitID();
     e.preventDefault();/* this stops validation happening too. */
 });
@@ -87,9 +71,19 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
         addTaskViaSVG();
     } else {
         addTaskViaProjectCard();
-    }   
+    }  
+    
+     
     domModule.closeTaskModal();
+    console.log(projectList);
     e.preventDefault();
+    /* Think these are needed in this order */
+    domModule.repopulateDropDownList();//refreshes list and opens modal
+    domModule.closeTaskModal(); //so need this to close modal
+    changeTaskSubmitID(); 
+    //resets listeners on new task buttons to reassign id so that new task 
+    //can be pushed to correct array 
+    
 
 })
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
@@ -97,7 +91,7 @@ domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModa
 
 
 
-
+/* ADDING PROJECTS  */
 function addProjectToList(){
 
     
@@ -135,7 +129,7 @@ function addTaskViaSVG(index){
 
 } 
 
-function changeTaskSubmitID(){
+export function changeTaskSubmitID(){
     newTaskButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
         if(e.target == newTaskButtonArray[index]){
             domModule.submitTaskButton.setAttribute('id', `${index}`);         
@@ -152,6 +146,10 @@ function addTaskViaProjectCard(index){
     `${domModule.taskDescription.value}`);
 
     projectList[index].projectArray.push(newTask);
+    domModule.submitTaskButton.removeAttribute('id');
+    /* Need to remove the id attribute else on project removal corresponding option from
+    dropdownlist isn't targetable */
+    
 }
 
 
@@ -203,6 +201,7 @@ function addTaskViaProjectCard(index){
 window.projectList = projectList;
 window.removeProjectButtonArray = removeProjectButtonArray;
 window.newTaskButtonArray = newTaskButtonArray;
+
 
 
 

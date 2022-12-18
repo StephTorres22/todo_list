@@ -99,7 +99,13 @@ export function removeDropDownListFromTaskForm(){
 }
 
 /* Takes project titles and recreates drop down list depending what projects are present */
-export function repopulateDropDownList(){    
+export function repopulateDropDownList(){   
+    
+    /* hoping this will work almost like a refresh */
+
+    if (taskForm.contains(createDropDownList.projectDropDownList)){
+        removeDropDownListFromTaskForm();
+        }
     
     
         taskForm.appendChild(createDropDownList.projectDropDownList);
