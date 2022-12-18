@@ -41,6 +41,7 @@ function addListenerToRemoveButton(){
         if(e.target == removeProjectButtonArray[index]){
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
+            newTaskButtonArray.splice(index, 1);
             
             //each option has attribute id set to index of project in projectList
             let targetOption = document.getElementById(`${index}`);
