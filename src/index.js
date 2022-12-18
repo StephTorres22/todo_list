@@ -1,16 +1,11 @@
 
 /* TODO: BRANCH NEWTASKBUTTON
 
--when project is removed, so too should the option in projectdropdownlist
 
--Will have to create an array of options so that can repopulate select tag. 
-    OR
-    forEach Project, using project.title, create new option within select.
-    will need to recreate select and add corresponding attributes to it.
 
-This function should remove dropdownlist on sumbit.
-Doing this so that only need one form for both add task methods.
-??MIGHT NOT WORK THIS WAY??
+
+
+
 
 -Using similar logic to remove button, 
     -on sumbitproject, new array for add task buttons created and updated
@@ -46,7 +41,10 @@ function addListenerToRemoveButton(){
         if(e.target == removeProjectButtonArray[index]){
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
-            console.log(projectList, removeProjectButtonArray);
+            
+            //each option has attribute id set to index of project in projectList
+            let targetOption = document.getElementById(`${index}`);
+            domModule.createDropDownList.projectDropDownList.removeChild(targetOption);
             addListenerToRemoveButton();
         }
         
@@ -80,11 +78,7 @@ domModule.closeProjectModalButton.addEventListener('click', domModule.closeProje
 
 /* Task form listeners */  
 
-/* domModule.addTaskSVG.addEventListener('click', () => {
-    
-    domModule.showTaskModal();
 
-}) */
 domModule.submitTaskButton.addEventListener('click', (e) => {
 
     addTask();
@@ -141,14 +135,7 @@ function addTask(index){
     
         
 
-        /* this removes everything after the project is created
-     */
-        
-        
-        //webdevsimpliefied global listener... try use that next time
     
-        //need to include deleteCount for this to work properly!
-        //this is what was missing in books.js for library project.
 
         
 

@@ -78,6 +78,11 @@ export class Project{
         newProjectOption.innerText = `${this.title}`;
 
     }
+
+    removeProjectOptionFromDropDownSelection(){
+
+        
+    }
  
 
     findProjectIndex(){

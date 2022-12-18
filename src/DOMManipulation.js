@@ -117,7 +117,7 @@ export function repopulateDropDownList(){
 }
 
 
-
+/* REMEMBER TO REMOVE THIS */
 window.dropDownList = createDropDownList.projectDropDownList;
 
 
