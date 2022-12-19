@@ -20,7 +20,6 @@ function addListenerToRemoveButton(){
 
             
             let targetOption = document.getElementById(`${index}`);
-            console.log(targetOption);
             domModule.createDropDownList.projectDropDownList.removeChild(targetOption);
             domModule.repopulateDropDownList();
             domModule.closeTaskModal();
@@ -75,7 +74,6 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     
      
     domModule.closeTaskModal();
-    console.log(projectList);
     e.preventDefault();
     /* Think these are needed in this order */
     domModule.repopulateDropDownList();//refreshes list and opens modal
