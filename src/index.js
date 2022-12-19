@@ -96,6 +96,8 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     changeTaskSubmitID(); 
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
+
+    
     
 
 })
@@ -140,6 +142,7 @@ function addTaskViaSVG(index){
 
     projectList[index].projectArray.push(newTask);
     newTask.displayTask();
+    
 
 } 
 
@@ -163,6 +166,7 @@ function addTaskViaProjectCard(index){
     domModule.submitTaskButton.removeAttribute('id');
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
+    newTask.displayTask();
     
 }
 

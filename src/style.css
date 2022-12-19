@@ -73,10 +73,19 @@ body{
     max-width: inherit;
     height:8rem;
     overflow: hidden;
-    margin: .5rem;
+    margin-bottom: .5rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
     border: 2px;
     border-style: solid;
     border-color: black;/* Just so I can see the div */
+}
+
+li{
+    color: black;
+    font-size: large;
+    list-style: none;
 }
 
 .newTaskButton{

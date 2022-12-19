@@ -134,18 +134,18 @@ export class Task{
     
     displayTask(){
 
+       // let newTaskList = document.createElement('');
         let newTask = document.createElement('li');
         let projectArrayDiv = document.getElementById('project');
+        /* not being able to find element */
 
         projectArrayDiv.appendChild(newTask);
-        newTask.innerText = `${this.title}, 
-                             ${this.description},
-                             ${this.dueDate},
-                             ${this.priority}.`
-
-
+        
+        newTask.innerText = `${this.title}`;
     }
 
+    /* not quite working how we'd like.
+    displays task it first projectcard, probably because of the way the div is being targeted */
    
 
 }
