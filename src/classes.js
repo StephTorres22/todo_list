@@ -30,6 +30,8 @@ export class Project{
         pDescription.innerText = `${this.description}`;
 
         let pArray = document.createElement('div');
+        pArray.setAttribute('id', 'project');
+        pArray.classList.add('projectArrayDiv');
         newProject.appendChild(pArray);
 
         
@@ -129,9 +131,20 @@ export class Task{
         this.priority = priority;
         
     }
-    /* method to push to array */
+    
+    displayTask(){
 
-    /* method to remove from array */
+        let newTask = document.createElement('li');
+        let projectArrayDiv = document.getElementById('project');
+
+        projectArrayDiv.appendChild(newTask);
+        newTask.innerText = `${this.title}, 
+                             ${this.description},
+                             ${this.dueDate},
+                             ${this.priority}.`
+
+
+    }
 
    
 

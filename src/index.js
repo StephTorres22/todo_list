@@ -1,4 +1,20 @@
+/* TODO...
 
+-Displaying task information in project cards
+
+    -Needs to read each project object array, populate project with elements from array
+    
+    -MAYBE similar to dropdown list, have a refresh, delete all DOM elements then 
+    repopulate
+    
+    OR just as with Project, have a display method that adds everything in a list item
+
+    -I would like alternate colors for list/task items, light blue and white/light grey.
+
+    
+    
+-A sort by function would be cool, i.e date, or priority*/
+    
 
 
 import { Project, Task } from './classes';
@@ -70,8 +86,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
         addTaskViaSVG();
     } else {
         addTaskViaProjectCard();
-    }  
-    
+    }      
      
     domModule.closeTaskModal();
     e.preventDefault();
@@ -124,6 +139,7 @@ function addTaskViaSVG(index){
                         `${domModule.taskDescription.value}`);
 
     projectList[index].projectArray.push(newTask);
+    newTask.displayTask();
 
 } 
 

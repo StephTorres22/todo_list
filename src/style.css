@@ -68,6 +68,17 @@ body{
     margin-bottom: 1rem;
 }
 
+.projectArrayDiv{
+    border-radius: 10px;
+    max-width: inherit;
+    height:8rem;
+    overflow: hidden;
+    margin: .5rem;
+    border: 2px;
+    border-style: solid;
+    border-color: black;/* Just so I can see the div */
+}
+
 .newTaskButton{
     background-color: green;
 }
