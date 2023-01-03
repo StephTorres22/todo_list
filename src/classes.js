@@ -30,7 +30,7 @@ export class Project{
         pDescription.innerText = `${this.description}`;
 
         let pArray = document.createElement('div');
-        pArray.setAttribute('id', 'project');
+        pArray.setAttribute('id', `${this.projectID}`);
         pArray.classList.add('projectArrayDiv');
         newProject.appendChild(pArray);
 
@@ -107,7 +107,14 @@ export class Project{
 
     }
 
+    get projectID(){
 
+        return `${this.title}` + `${this.findProjectIndex()}`
+
+    }
+
+    /* Task can't access this, need Task, ie each implementation 
+    to be able to access the DOM elements of each project. */
 
  
 

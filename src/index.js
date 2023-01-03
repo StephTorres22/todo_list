@@ -7,7 +7,8 @@
     -MAYBE similar to dropdown list, have a refresh, delete all DOM elements then 
     repopulate
     
-    OR just as with Project, have a display method that adds everything in a list item
+    OR just as with Project, have a display method that adds everything in a list item,
+    this is hard as need to be able to get relevant ID to append to.
 
     -I would like alternate colors for list/task items, light blue and white/light grey.
 
@@ -141,7 +142,8 @@ function addTaskViaSVG(index){
                         `${domModule.taskDescription.value}`);
 
     projectList[index].projectArray.push(newTask);
-    newTask.displayTask();
+    displayTasks();
+    //newTask.displayTask();
     
 
 } 
@@ -164,10 +166,38 @@ function addTaskViaProjectCard(index){
 
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
+    displayTasks();
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
-    newTask.displayTask();
+    //newTask.displayTask();
     
+}
+
+/* function displayTask(project){
+
+    project = projectList[index].projectID
+
+    let newListItem = document.createElement('li');
+    let taskDiv = getElementById(`${project}`);
+
+
+} */
+
+/* This puts the correct task in the correct box, but creates duplicate DOM elements */
+function displayTasks(){
+
+    projectList.forEach((project) => {
+
+       
+        project.projectArray.forEach((task) => {
+            let newTask = document.createElement('li');
+            let taskDiv = document.getElementById(`${project.projectID}`);
+            console.log(task);
+            taskDiv.appendChild(newTask);
+            newTask.innerText = `${task.title}`;
+
+        })
+    })
 }
 
 
