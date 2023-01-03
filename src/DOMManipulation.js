@@ -59,9 +59,7 @@ export function closeProjectModal(){
 
 /* Task Form Modal functionality */
 
-/* export function createTaskForm{
-    
-} */
+
 export function showTaskModal(){
 
     taskFormModal.showModal();
@@ -70,8 +68,10 @@ export function showTaskModal(){
 
 export function closeTaskModal(){
 
+    submitTaskButton.removeAttribute('id');
     taskFormModal.close();
     taskForm.reset();
+    
 }
 
 export const createDropDownList = (() => {
@@ -94,7 +94,10 @@ export function removeDropDownListFromTaskForm(){
     }
 
     //this should remove dropDownList from form
-    taskForm.removeChild(createDropDownList.projectDropDownList);
+    if (taskForm.contains(createDropDownList.projectDropDownList)){
+        taskForm.removeChild(createDropDownList.projectDropDownList);
+    }
+    
     
 }
 

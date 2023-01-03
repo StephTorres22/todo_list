@@ -62,7 +62,7 @@ export class Project{
                 domModule.removeDropDownListFromTaskForm();
 
             }
-            changeTaskSubmitID();
+            
             domModule.showTaskModal();
         })    
         

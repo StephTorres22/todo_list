@@ -34,16 +34,16 @@ function addListenerToRemoveButton(){
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
+          //  domModule.submitTaskButton.removeAttribute('id');
 
             
-            let targetOption = document.getElementById(`${index}`);
-            domModule.createDropDownList.projectDropDownList.removeChild(targetOption);
+            domModule.removeDropDownListFromTaskForm();
             domModule.repopulateDropDownList();
             domModule.closeTaskModal();
             
             //each option has attribute id set to index of project in projectList
             
-            
+            changeTaskSubmitID();
             addListenerToRemoveButton();
         }
         
@@ -97,6 +97,9 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     changeTaskSubmitID(); 
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
+    /* BUG, this doesn't happen when the first project is removed, 
+    have to open and then close the task form, before opening it again
+    rather annoying, don't know why. */
 
     
     
@@ -142,7 +145,7 @@ function addTaskViaSVG(index){
                         `${domModule.taskDescription.value}`);
 
     projectList[index].projectArray.push(newTask);
-    displayTasks();
+  //  displayTasks();
     //newTask.displayTask();
     
 
@@ -166,32 +169,29 @@ function addTaskViaProjectCard(index){
 
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
-    displayTasks();
+   // displayTasks();
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
-    //newTask.displayTask();
+    
     
 }
 
-/* function displayTask(project){
 
-    project = projectList[index].projectID
-
-    let newListItem = document.createElement('li');
-    let taskDiv = getElementById(`${project}`);
-
-
-} */
 
 /* This puts the correct task in the correct box, but creates duplicate DOM elements */
 function displayTasks(){
 
     projectList.forEach((project) => {
 
+        let taskDiv = document.getElementById(`${project.projectID}`);
+        while (taskDiv.firstChild){
+            taskDiv.removeChild(taskDiv.firstChild);
+        }
        
         project.projectArray.forEach((task) => {
-            let newTask = document.createElement('li');
-            let taskDiv = document.getElementById(`${project.projectID}`);
+            let newTask = document.createElement('li');  
+
+            
             console.log(task);
             taskDiv.appendChild(newTask);
             newTask.innerText = `${task.title}`;
