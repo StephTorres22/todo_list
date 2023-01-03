@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID } from './index'
+import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID, taskListDivArray } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -33,6 +33,7 @@ export class Project{
         pArray.setAttribute('id', `${this.projectID}`);
         pArray.classList.add('projectArrayDiv');
         newProject.appendChild(pArray);
+        taskListDivArray.push(pArray);
 
         
            
@@ -80,12 +81,6 @@ export class Project{
 
     }
 
-    removeProjectOptionFromDropDownSelection(){
-
-
-    }
- 
-
     findProjectIndex(){
 
         let index = projectList.map((project) => project.title).indexOf(`${this.title}`);
@@ -113,8 +108,12 @@ export class Project{
 
     }
 
-    /* Task can't access this, need Task, ie each implementation 
-    to be able to access the DOM elements of each project. */
+    /* set projectID(newID){
+
+        this.projectID = newID;
+    }
+ */
+   
 
  
 

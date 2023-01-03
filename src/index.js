@@ -26,6 +26,8 @@ const projectList = []
 
 export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
 
+export const taskListDivArray = Array.from(document.querySelectorAll('.projectArrayDiv'));
+
 export const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
 
 function addListenerToRemoveButton(){
@@ -34,7 +36,8 @@ function addListenerToRemoveButton(){
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
-          //  domModule.submitTaskButton.removeAttribute('id');
+            taskListDivArray.splice(index, 1);
+          
 
             
             domModule.removeDropDownListFromTaskForm();
@@ -44,6 +47,7 @@ function addListenerToRemoveButton(){
             //each option has attribute id set to index of project in projectList
             
             changeTaskSubmitID();
+            
             addListenerToRemoveButton();
         }
         
@@ -145,7 +149,7 @@ function addTaskViaSVG(index){
                         `${domModule.taskDescription.value}`);
 
     projectList[index].projectArray.push(newTask);
-  //  displayTasks();
+    displayTasks(index);
     //newTask.displayTask();
     
 
@@ -169,7 +173,7 @@ function addTaskViaProjectCard(index){
 
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
-   // displayTasks();
+    displayTasks(index);
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
     
@@ -179,27 +183,30 @@ function addTaskViaProjectCard(index){
 
 
 /* This puts the correct task in the correct box, but creates duplicate DOM elements */
-function displayTasks(){
+function displayTasks(index){    
+        
+        let targetTaskDiv = taskListDivArray[index];    
 
-    projectList.forEach((project) => {
-
-        let taskDiv = document.getElementById(`${project.projectID}`);
-        while (taskDiv.firstChild){
-            taskDiv.removeChild(taskDiv.firstChild);
+        if(targetTaskDiv.hasChildNodes !== true){
+            while (targetTaskDiv.firstChild){
+                targetTaskDiv.removeChild(targetTaskDiv.firstChild);
+            }
         }
-       
-        project.projectArray.forEach((task) => {
+        projectList[index].projectArray.forEach((task) => {
             let newTask = document.createElement('li');  
 
             
             console.log(task);
-            taskDiv.appendChild(newTask);
+            targetTaskDiv.appendChild(newTask);
             newTask.innerText = `${task.title}`;
 
         })
-    })
-}
 
+       
+        
+   
+    
+}
 
 
 
@@ -249,6 +256,7 @@ function displayTasks(){
 window.projectList = projectList;
 window.removeProjectButtonArray = removeProjectButtonArray;
 window.newTaskButtonArray = newTaskButtonArray;
+window.taskListDivArray = taskListDivArray;
 
 
 
