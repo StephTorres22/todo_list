@@ -1,15 +1,5 @@
 /* TODO...
 
--Displaying task information in project cards
-
-    -Needs to read each project object array, populate project with elements from array
-    
-    -MAYBE similar to dropdown list, have a refresh, delete all DOM elements then 
-    repopulate
-    
-    OR just as with Project, have a display method that adds everything in a list item,
-    this is hard as need to be able to get relevant ID to append to.
-
     -I would like alternate colors for list/task items, light blue and white/light grey.
 
     
@@ -78,7 +68,8 @@ domModule.submitProjectButton.addEventListener('click', function(e){
     domModule.repopulateDropDownList();
     domModule.closeTaskModal();
     changeTaskSubmitID();
-    e.preventDefault();/* this stops validation happening too. */
+    e.preventDefault();/* this stops validation happening too. NEED TO ADD VALIDATION
+    what happens if button type is changed from submit to button? */
 });
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
 
@@ -101,10 +92,6 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     changeTaskSubmitID(); 
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
-    /* BUG, this doesn't happen when the first project is removed, 
-    have to open and then close the task form, before opening it again
-    rather annoying, don't know why. */
-
     
     
 
@@ -150,7 +137,7 @@ function addTaskViaSVG(index){
 
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
-    //newTask.displayTask();
+    
     
 
 } 
@@ -182,7 +169,7 @@ function addTaskViaProjectCard(index){
 
 
 
-/* This puts the correct task in the correct box, but creates duplicate DOM elements */
+/* This puts the correct task in the correct box*/
 function displayTasks(index){    
         
         let targetTaskDiv = taskListDivArray[index];    
