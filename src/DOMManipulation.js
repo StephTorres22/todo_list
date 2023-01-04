@@ -4,7 +4,6 @@ import * as classes from './classes';
 import { projectList } from './index';
 
 
-
 export const main = document.querySelector('.main');
 export const sideBar = document.querySelector('.sideBar');
 export const addProjectButton = document.getElementById('addProject');
@@ -18,15 +17,14 @@ addTaskSVG.addEventListener('click', () => {
 
 });
 
-
-
-
 export const projectCardArray = Array.from(document.querySelectorAll('.sideBarCard'));
 
 
 /* Project form elements */
 export const addProjectModal = document.getElementById('projectFormModal');
 export const projectForm = document.getElementById('projectForm');
+
+
 
 export const projectTitle = document.getElementById('projectTitle');
 export const projectDescription = document.getElementById('description');
@@ -101,8 +99,7 @@ export function removeDropDownListFromTaskForm(){
     if (taskForm.contains(createDropDownList.projectDropDownList)){
         taskForm.removeChild(createDropDownList.projectDropDownList);
     }
-    
-    
+     
 }
 
 /* Takes project titles and recreates drop down list depending what projects are present */

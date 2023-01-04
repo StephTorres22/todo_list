@@ -1,3 +1,11 @@
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+    --main-color: rgb(8, 103, 187);
+    --secondary-color: rgb(125, 172, 241);
+    --tertiary-color: (245, 239, 239);
+    --highlight-color: yellow;
+}
+
 body{
     margin: 0;
 }
@@ -19,7 +27,7 @@ body{
 
     min-height: 100vh;
     grid-area: side;
-    background-color: rgb(8, 103, 187);
+    background-color: var(--main-color);
     padding: .75rem;
     padding-top: 3rem;
     
@@ -122,7 +130,7 @@ li{
 
     min-width: 100vw;
     grid-area: top;
-    background-color: rgb(125, 172, 241);
+    background-color: var(--secondary-color);
 
 }
 
@@ -130,7 +138,7 @@ li{
 
 .main{
     grid-area: main;
-    background-color: rgb(245, 239, 239);
+    background-color: var(--tertiary-color);
 
 }
 

@@ -7,15 +7,6 @@
 
     if scrollable, easier for user to find task they are looking for from the side bar,
     does main then become obsolete?
-    
-
-    -I would like alternate colors for list/task items, light blue and white/light grey.
-
-    tried using nth child(even) on li, but because i delete and refresh each time backgroud colour switched between hhe two
-
-    different colours for priority
-
-    need to add prioirty check
 
     style forms
 
@@ -26,10 +17,6 @@
 -Validation for form, with alert
 
 */
-
-
-    
-
 
 import { Project, Task } from './classes';
 import * as domModule from './DOMManipulation';
@@ -88,21 +75,44 @@ domModule.addProjectButton.addEventListener('click', () =>{
 
 //stops submit button from refreshing the page after each submit
 domModule.submitProjectButton.addEventListener('click', function(e){
-    addProjectToList();
-    addListenerToRemoveButton();
-    domModule.repopulateDropDownList();
-    domModule.closeTaskModal();
-    changeTaskSubmitID();
-    e.preventDefault();/* this stops validation happening too. NEED TO ADD VALIDATION
+
+    
+    if(projectFormValidation() == true){
+        addProjectToList();
+        addListenerToRemoveButton();
+        domModule.repopulateDropDownList();
+        domModule.closeTaskModal();
+        changeTaskSubmitID();
+        e.preventDefault();
+    }else e.preventDefault();/* this stops validation happening too. NEED TO ADD VALIDATION
     what happens if button type is changed from submit to button? */
 });
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
+
+/* PROJECT FORM VALIDATIONS */
+
+/* Alert if name or description is empty, also alert if name is the same as another name */
+function projectFormValidation(){
+
+    const projectTitles = projectList.map((project) => project.title)   
+
+    if(domModule.projectTitle.value == '' || domModule.projectTitle.value == null){
+        alert("Your new project needs a name!");
+        return false
+    }else if(projectTitles.includes(domModule.projectTitle.value)){
+        alert("A project with this name already exists, please choose another name.")
+        return false
+    }else if(domModule.projectDescription.value == '' || domModule.projectDescription.value == null){
+        alert("Your new project needs a description!");
+        return false
+    }else return true  
+
+}
 
 
 /* Task form listeners */  
 
 domModule.submitTaskButton.addEventListener('click', (e) => {
-
     
     if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
         addTaskViaSVG();
@@ -116,32 +126,27 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     domModule.repopulateDropDownList();//refreshes list and opens modal
     domModule.closeTaskModal(); //so need this to close modal
     changeTaskSubmitID(); 
-    
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
-    
-    
 
 })
+
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
-
-
 
 
 /* ADDING PROJECTS  */
 function addProjectToList(){
 
-    
     let newProject = new Project(`${domModule.projectTitle.value}`, `${domModule.projectDescription.value}`);
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToDropDownSelection();
 
    // newProject.addProjectToStorage();
-    domModule.closeProjectModal(); 
-     
+    domModule.closeProjectModal();      
       
 }
+
 
 /* ADDING TASK FUNCTIONS */
 
@@ -166,8 +171,6 @@ function addTaskViaSVG(index, selection){
 
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
-    
-    
 
 } 
 
@@ -194,10 +197,10 @@ function addTaskViaProjectCard(index, selection){
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
     
-    
 }
 
 
+/* DISPLAYING TASKS FUNCTIONS */
 
 /* This puts the correct task in the correct box*/
 function displayTasks(index){    
@@ -220,6 +223,8 @@ function displayTasks(index){
            }else if(`${task.priority}` == 'high'){
             newTask.style.backgroundColor = 'red';
            }
+
+           /* Just using these as basic colours, can be more specific later if i want. */
            
         })  
     
@@ -241,40 +246,6 @@ export function getRadioGroupValue(){
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-
-    
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* function showLocalStorage(){
     
     for (let i = 0; i < localStorage.length; i++){
@@ -289,9 +260,6 @@ window.projectList = projectList;
 window.removeProjectButtonArray = removeProjectButtonArray;
 window.newTaskButtonArray = newTaskButtonArray;
 window.taskListDivArray = taskListDivArray;
-
-
-
 
 export {projectList}
 
