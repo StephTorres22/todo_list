@@ -132,13 +132,12 @@ export class Project{
 export class Task{
 
 
-    constructor(title, description, priority){
+    constructor(title, description, priority, dueDate){
         
         this.title = title;
-        this.description = description;
-        //this.dueDate = dueDate;
+        this.description = description;        
         this.priority = priority;
-        
+        this.dueDate = dueDate;        
     }
 
   

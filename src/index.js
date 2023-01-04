@@ -150,7 +150,8 @@ domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModa
 
 /* TASK FORM VALIDATION */
 
-/* validations work but have click handling vialion errors...? */
+/* validations work but have click handling vialion errors...? 
+need to add condition of if task duedate is in the past.*/
 
 function taskFormValidationViaSVG(index, selection){
 
@@ -159,19 +160,23 @@ function taskFormValidationViaSVG(index, selection){
     const taskTitles = projectList[index].projectArray.map((task) => task.title);
 
     if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
-        alert("Please give your new task a name.")
+        alert("Please give your new task a name.");
         return false
     }
     if(taskTitles.includes(domModule.taskTitle.value)){
-        alert("A task with that name already exists within this project, please choose another name.")
+        alert("A task with that name already exists within this project, please choose another name.");
         return false
     }
     if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
-        alert("Please describe your new task.")
+        alert("Please describe your new task.");
         return false
     }
     if(selection == null){
-        alert("Please select a relevant priority level.")
+        alert("Please select a relevant priority level.");
+        return false
+    }
+    if(domModule.taskDueDate.value == null || domModule.taskDueDate.value == undefined || domModule.taskDueDate.value == ''){
+        alert("Please pick a due date for your new task.");
         return false
     } 
     return true
@@ -185,19 +190,23 @@ function taskFormValidationViaProjectCard(index, selection){
     const taskTitles = projectList[index].projectArray.map((task) => task.title);
 
     if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
-        alert("Please give your new task a name.")
+        alert("Please give your new task a name.");
         return false
     }
     if(taskTitles.includes(domModule.taskTitle.value)){
-        alert("A task with that name already exists within this project, please choose another name.")
+        alert("A task with that name already exists within this project, please choose another name.");
         return false
     }
     if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
-        alert("Please describe your new task.")
+        alert("Please describe your new task.");
         return false
     }
     if(selection == null){
-        alert("Please select a relevant priority level.")
+        alert("Please select a relevant priority level.");
+        return false
+    }
+    if(domModule.taskDueDate.value == null || domModule.taskDueDate.value == undefined || domModule.taskDueDate.value == ''){
+        alert("Please pick a due date for your new task.");
         return false
     }
     return true
@@ -238,7 +247,9 @@ function addTaskViaSVG(index, selection){
 
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
-                        `${domModule.taskDescription.value}`, selection);
+                           `${domModule.taskDescription.value}`,
+                            selection,
+                           `${domModule.taskDueDate.value}`);
 
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
@@ -260,7 +271,9 @@ function addTaskViaProjectCard(index, selection){
     selection = getRadioGroupValue()
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
-    `${domModule.taskDescription.value}`, selection);
+                            `${domModule.taskDescription.value}`,
+                             selection,
+                            `${domModule.taskDueDate.value}`);
 
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
