@@ -39,9 +39,7 @@ function addListenerToRemoveButton(){
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
             taskListDivArray.splice(index, 1);
-          
 
-            
             domModule.removeDropDownListFromTaskForm();
             domModule.repopulateDropDownList();
             domModule.closeTaskModal();
@@ -49,11 +47,9 @@ function addListenerToRemoveButton(){
             //each option has attribute id set to index of project in projectList
             
             changeTaskSubmitID();
-            
             addListenerToRemoveButton();
         }
-        
-        }));
+    }));
 
 }
 /* Think this works, tests the target against the array of buttons, 
