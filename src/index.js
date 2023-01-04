@@ -84,8 +84,8 @@ domModule.submitProjectButton.addEventListener('click', function(e){
         domModule.closeTaskModal();
         changeTaskSubmitID();
         e.preventDefault();
-    }else e.preventDefault();/* this stops validation happening too. NEED TO ADD VALIDATION
-    what happens if button type is changed from submit to button? */
+    }else e.preventDefault();
+    /* e.default() stops page reload on submission, also stops css form validation */
 });
 domModule.closeProjectModalButton.addEventListener('click', domModule.closeProjectModal)
 
@@ -115,23 +115,94 @@ function projectFormValidation(){
 domModule.submitTaskButton.addEventListener('click', (e) => {
     
     if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
-        addTaskViaSVG();
-    } else {
-        addTaskViaProjectCard();
-    }      
-     
-    domModule.closeTaskModal();
-   // e.preventDefault();
-    /* Think these are needed in this order */
-    domModule.repopulateDropDownList();//refreshes list and opens modal
-    domModule.closeTaskModal(); //so need this to close modal
-    changeTaskSubmitID(); 
+        if(taskFormValidationViaSVG() == true){
+            addTaskViaSVG();
+            domModule.closeTaskModal();
+             e.preventDefault();
+            /* Think these are needed in this order */
+            domModule.repopulateDropDownList();//refreshes list and opens modal
+            domModule.closeTaskModal(); //so need this to close modal
+            changeTaskSubmitID();
+        }
+
+        /* Needs a nest if statement, not ideal, to check which method of task creation,
+        and then validation */
+        
+    } else if(taskFormValidationViaProjectCard()){
+            addTaskViaProjectCard();
+            domModule.closeTaskModal();
+        e.preventDefault();
+        /* Think these are needed in this order */
+        domModule.repopulateDropDownList();//refreshes list and opens modal
+        domModule.closeTaskModal(); //so need this to close modal
+        changeTaskSubmitID();
+    }
+
+    /* Also, loads of duplication, if these other methods are outside of each if block,
+    when form closes even if validation is false. */
+    
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
 
 })
 
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
+
+/* TASK FORM VALIDATION */
+
+/* validations work but have click handling vialion errors...? */
+
+function taskFormValidationViaSVG(index, selection){
+
+    selection = getRadioGroupValue();
+    index = findProjectIndex();
+    const taskTitles = projectList[index].projectArray.map((task) => task.title);
+
+    if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
+        alert("Please give your new task a name.")
+        return false
+    }
+    if(taskTitles.includes(domModule.taskTitle.value)){
+        alert("A task with that name already exists within this project, please choose another name.")
+        return false
+    }
+    if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
+        alert("Please describe your new task.")
+        return false
+    }
+    if(selection == null){
+        alert("Please select a relevant priority level.")
+        return false
+    } 
+    return true
+
+}
+
+function taskFormValidationViaProjectCard(index, selection){
+
+    selection = getRadioGroupValue();
+    index = domModule.submitTaskButton.getAttribute('id');
+    const taskTitles = projectList[index].projectArray.map((task) => task.title);
+
+    if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
+        alert("Please give your new task a name.")
+        return false
+    }
+    if(taskTitles.includes(domModule.taskTitle.value)){
+        alert("A task with that name already exists within this project, please choose another name.")
+        return false
+    }
+    if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
+        alert("Please describe your new task.")
+        return false
+    }
+    if(selection == null){
+        alert("Please select a relevant priority level.")
+        return false
+    }
+    return true
+
+}
 
 
 /* ADDING PROJECTS  */
@@ -205,32 +276,35 @@ function addTaskViaProjectCard(index, selection){
 /* This puts the correct task in the correct box*/
 function displayTasks(index){    
         
-        let targetTaskDiv = taskListDivArray[index];    
+    let targetTaskDiv = taskListDivArray[index];    
 
-        if(targetTaskDiv.hasChildNodes !== true){
-            while (targetTaskDiv.firstChild){
-                targetTaskDiv.removeChild(targetTaskDiv.firstChild);
-            }
+    if(targetTaskDiv.hasChildNodes !== true){
+        while (targetTaskDiv.firstChild){
+            targetTaskDiv.removeChild(targetTaskDiv.firstChild);
         }
-        projectList[index].projectArray.forEach((task) => {
-            let newTask = document.createElement('li'); 
-            targetTaskDiv.appendChild(newTask);
-            newTask.innerText = `${task.title}`;
-           if(`${task.priority}` == 'low'){
-            newTask.style.backgroundColor = 'yellow';
-           }else if(`${task.priority}` == 'medium'){
-            newTask.style.backgroundColor = 'orange';
-           }else if(`${task.priority}` == 'high'){
-            newTask.style.backgroundColor = 'red';
-           }
+    }
 
-           /* Just using these as basic colours, can be more specific later if i want. */
-           
-        })  
+    projectList[index].projectArray.forEach((task) => {
+        let newTask = document.createElement('li'); 
+        targetTaskDiv.appendChild(newTask);
+        newTask.innerText = `${task.title}`;
+
+        if(`${task.priority}` == 'low'){
+            newTask.style.backgroundColor = 'yellow';
+        }else if(`${task.priority}` == 'medium'){
+            newTask.style.backgroundColor = 'orange';
+        }else if(`${task.priority}` == 'high'){
+            newTask.style.backgroundColor = 'red';
+        }
+        /* Just using these as basic colours, can be more specific later if i want. 
+        this probably becomes very slow as projects grow, deleting, recreating elements each time.
+        crude fix.*/ 
+          
+    })  
     
 }
 
-export function getRadioGroupValue(){
+function getRadioGroupValue(){
 
     if(domModule.priorityHigh.checked){
         return domModule.priorityHigh.value
@@ -238,7 +312,7 @@ export function getRadioGroupValue(){
         return domModule.priorityMedium.value
     }else if(domModule.priorityLow.checked){
         return domModule.priorityLow.value
-    }    
+    }else return null    
 
     /* Tried a forEach loop over the radioGroup to return the value of which 
     radio was checked, but could not pass this a value to new task priority,
