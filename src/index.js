@@ -2,9 +2,23 @@
 
     -I would like alternate colors for list/task items, light blue and white/light grey.
 
+    tried using nth child(even) on li, but because i delete and refresh each time backgroud colour switched between hhe two
+
+    different colours for priority
+
+    need to add prioirty check
+
+    style forms
+
+    stlye sidebar cards, buttons lis etc
     
-    
--A sort by function would be cool, i.e date, or priority*/
+-A sort by function would be cool, i.e date, or priority
+
+-Validation for form, with alert
+
+*/
+
+
     
 
 
@@ -17,6 +31,8 @@ const projectList = []
 export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
 
 export const taskListDivArray = Array.from(document.querySelectorAll('.projectArrayDiv'));
+
+export const expandButtonArray = Array.from(document.querySelectorAll('.expandButton'));
 
 export const removeProjectButtonArray = Array.from(document.querySelectorAll('.removeProjectButton'));
 
@@ -85,7 +101,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     }      
      
     domModule.closeTaskModal();
-    e.preventDefault();
+   // e.preventDefault();
     /* Think these are needed in this order */
     domModule.repopulateDropDownList();//refreshes list and opens modal
     domModule.closeTaskModal(); //so need this to close modal

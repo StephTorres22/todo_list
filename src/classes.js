@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID, taskListDivArray } from './index'
+import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID, taskListDivArray, expandButtonArray } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -35,27 +35,15 @@ export class Project{
         newProject.appendChild(pArray);
         taskListDivArray.push(pArray);
 
-        
-           
-        
-        let removeButton = document.createElement('button');
-        
-        
-        newProject.appendChild(removeButton);
-        removeButton.classList.add('removeProjectButton');
-        removeButton.innerText = 'Remove Project';
-        removeProjectButtonArray.push(removeButton);
-        
-        removeButton.addEventListener('click', () =>{
-           domModule.sideBar.removeChild(newProject);
-          
-        })
+        let buttonDiv = document.createElement('div');
+        buttonDiv.classList.add('sideCardButtonDiv');
+        newProject.appendChild(buttonDiv);
 
-           
-
-        let newTaskButton = document.createElement('button');
+        let newTaskButton = document.createElement('img');
+        newTaskButton.setAttribute('src', './assets/note-plus-outline.svg');
         newTaskButton.classList.add('newTaskButton');
-        newProject.appendChild(newTaskButton);
+        buttonDiv.appendChild(newTaskButton);
+        
         newTaskButton.innerText = 'Add Task';
         newTaskButtonArray.push(newTaskButton);
         newTaskButton.addEventListener('click', () => {
@@ -65,8 +53,24 @@ export class Project{
             }
             
             domModule.showTaskModal();
-        })    
-        
+        })   
+
+        let expandButton = document.createElement('img');
+        expandButton.setAttribute('src', './assets/arrow-expand.svg');
+        buttonDiv.appendChild(expandButton);
+        expandButton.classList.add('expandButton');
+        expandButtonArray.push(expandButton);
+
+
+        let removeButton = document.createElement('img');
+        removeButton.setAttribute('src', './assets/delete-sweep-outline.svg')
+        buttonDiv.appendChild(removeButton);
+        removeButton.classList.add('removeProjectButton');
+        removeProjectButtonArray.push(removeButton);
+        removeButton.addEventListener('click', () =>{
+           domModule.sideBar.removeChild(newProject);
+          
+        })
     }
 
 
