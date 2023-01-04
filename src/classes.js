@@ -1,5 +1,5 @@
 import './style.css'
-import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID, taskListDivArray, expandButtonArray } from './index'
+import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSubmitID, taskListDivArray, expandButtonArray, getRadioGroupValue } from './index'
 import * as domModule from './DOMManipulation';
 
 
@@ -132,31 +132,16 @@ export class Project{
 export class Task{
 
 
-    constructor(title, description, dueDate, priority){
+    constructor(title, description, priority){
         
         this.title = title;
         this.description = description;
-        this.dueDate = dueDate;
+        //this.dueDate = dueDate;
         this.priority = priority;
         
     }
-    
-    displayTask(){
 
-       // let newTaskList = document.createElement('');
-        let newTask = document.createElement('li');
-        let projectArrayDiv = document.getElementById('project');
-        /* not being able to find element */
-
-        projectArrayDiv.appendChild(newTask);
-        
-        newTask.innerText = `${this.title}`;
-    }
-
-    /* not quite working how we'd like.
-    displays task it first projectcard, probably because of the way the div is being targeted */
-   
-
+  
 }
 
 window.Task = Task;

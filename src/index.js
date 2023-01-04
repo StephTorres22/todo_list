@@ -103,6 +103,7 @@ domModule.closeProjectModalButton.addEventListener('click', domModule.closeProje
 
 domModule.submitTaskButton.addEventListener('click', (e) => {
 
+    
     if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
         addTaskViaSVG();
     } else {
@@ -115,6 +116,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     domModule.repopulateDropDownList();//refreshes list and opens modal
     domModule.closeTaskModal(); //so need this to close modal
     changeTaskSubmitID(); 
+    
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
     
@@ -153,12 +155,14 @@ function findProjectIndex(projectTitle){
 
 
 /* Uses index to push new task to desired project instance */
-function addTaskViaSVG(index){
+function addTaskViaSVG(index, selection){
 
     index = findProjectIndex();
+    selection = getRadioGroupValue();
+
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
-                        `${domModule.taskDescription.value}`);
+                        `${domModule.taskDescription.value}`, selection);
 
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
@@ -176,12 +180,13 @@ export function changeTaskSubmitID(){
     }))
 }
 
-function addTaskViaProjectCard(index){
+function addTaskViaProjectCard(index, selection){
 
     index = domModule.submitTaskButton.getAttribute('id');
+    selection = getRadioGroupValue()
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
-    `${domModule.taskDescription.value}`);
+    `${domModule.taskDescription.value}`, selection);
 
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
@@ -212,14 +217,25 @@ function displayTasks(index){
             targetTaskDiv.appendChild(newTask);
             newTask.innerText = `${task.title}`;
 
-        })
-
-       
-        
-   
+        })  
     
 }
 
+export function getRadioGroupValue(){
+
+    if(domModule.priorityHigh.checked){
+        return domModule.priorityHigh.value
+    }else if(domModule.priorityMedium.checked){
+        return domModule.priorityMedium.value
+    }else if(domModule.priorityLow.checked){
+        return domModule.priorityLow.value
+    }    
+
+    /* Tried a forEach loop over the radioGroup to return the value of which 
+    radio was checked, but could not pass this a value to new task priority,
+    couldn't work it out. */
+    
+}
 
 
 
