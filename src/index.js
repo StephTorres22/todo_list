@@ -210,13 +210,17 @@ function displayTasks(index){
             }
         }
         projectList[index].projectArray.forEach((task) => {
-            let newTask = document.createElement('li');  
-
-            
-            console.log(task);
+            let newTask = document.createElement('li'); 
             targetTaskDiv.appendChild(newTask);
             newTask.innerText = `${task.title}`;
-
+           if(`${task.priority}` == 'low'){
+            newTask.style.backgroundColor = 'yellow';
+           }else if(`${task.priority}` == 'medium'){
+            newTask.style.backgroundColor = 'orange';
+           }else if(`${task.priority}` == 'high'){
+            newTask.style.backgroundColor = 'red';
+           }
+           
         })  
     
 }
