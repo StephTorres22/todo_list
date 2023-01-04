@@ -21,13 +21,13 @@ export class Project{
         domModule.sideBar.appendChild(newProject);
         newProject.classList.add('sideBarCard');
         
-        let pTitle = document.createElement('h4');
+        let pTitle = document.createElement('h2');
         newProject.appendChild(pTitle);
         pTitle.innerText = `${this.title}`;
 
-        let pDescription = document.createElement('p');
+        let pDescription = document.createElement('h3');
         newProject.appendChild(pDescription);
-        pDescription.innerText = `${this.description}`;
+        pDescription.innerText = `${this.description}`;               
 
         let pArray = document.createElement('div');
         pArray.setAttribute('id', `${this.projectID}`);
@@ -60,7 +60,6 @@ export class Project{
         buttonDiv.appendChild(expandButton);
         expandButton.classList.add('expandButton');
         expandButtonArray.push(expandButton);
-
 
         let removeButton = document.createElement('img');
         removeButton.setAttribute('src', './assets/delete-sweep-outline.svg')

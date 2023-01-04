@@ -69,16 +69,18 @@
             <input type="text" name="taskTitle" id="taskTitle" placeholder="Task Name" required>
             <input type="text" name="taskDescription" id="taskDescription" placeholder="Task Description" required>
             <input type="date" name="dueDate" id="dueDate">
-        
-            
+
+            <div class="priorityRadio">
+                <input type="radio" name="priority" id="priorityHigh" value="high">High</input>
+                <input type="radio" name="priority" id="priorityMedium" value="medium">Medium</input>
+                <input type="radio" name="priority" id="priorityLow" value="low">Low</input>
+            </div>
 
             <div class="buttonDiv">
                 <button type="button" class="submitTask">Add Task to Project</button>
                 <button type="reset">Clear</button>
                 <button type="button" class="closeModal" id="closeTaskModal">&times;</button>
             </div>
-                
-
 
         </form>
 

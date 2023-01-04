@@ -73,6 +73,12 @@ body{
     
 }
 
+.sideBarCard h3, .sideBarCard h2{
+    margin: 0;
+    margin-bottom: .175rem;
+    text-decoration: underline;
+}
+
 .projectArrayDiv{
     
     max-width: inherit;
@@ -83,7 +89,7 @@ body{
     margin-right: 0;
     padding: 0;
     border: 2px;
-    overflow: hidden;
+    overflow: scroll;
     
 }
 

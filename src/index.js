@@ -1,5 +1,14 @@
 /* TODO...
 
+    OPTIONS, tasklist scrollable or hidden?
+
+    if hidden, functionality of expand button makes sense, click on it
+    and then project is displayed in main.
+
+    if scrollable, easier for user to find task they are looking for from the side bar,
+    does main then become obsolete?
+    
+
     -I would like alternate colors for list/task items, light blue and white/light grey.
 
     tried using nth child(even) on li, but because i delete and refresh each time backgroud colour switched between hhe two
