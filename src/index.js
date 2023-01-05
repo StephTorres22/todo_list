@@ -1,18 +1,28 @@
 /* TODO...
-
-    OPTIONS, tasklist scrollable or hidden?
-
-    if hidden, functionality of expand button makes sense, click on it
-    and then project is displayed in main.
-
-    if scrollable, easier for user to find task they are looking for from the side bar,
-    does main then become obsolete?
-
-    style forms
     
 -A sort by function would be cool, i.e date, or priority
 
+-filter function
 
+-Expand button functionality,
+
+    click on a project card and it's then displayed in main with all the details,
+    maybe make overflow hidden so this is more relevant.
+
+    include a check box for each task to change priority to complete, change colour.
+        need to add condition so this happens in project side cards too.
+
+-Default load page, large calender showing 3days with task and project for today, tomorrow, and day after
+        would be cool to include a clock, round, minimal, moving hands,
+        
+-View options for main window, 
+
+    -split calendar with clock  and enlarged project
+    -split search results and calendar with clock
+    -show all project in a slightly larger project card in a grid? 
+     obsolete if search funtion exists. 
+
+-Need info to stay after reload, local storage, or JSON?     
 */
 
 import { Project, Task } from './classes';
