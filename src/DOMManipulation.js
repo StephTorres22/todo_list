@@ -1,7 +1,7 @@
 
 import './style.css';
 import * as classes from './classes';
-import { projectList } from './index';
+import { checkTaskPriority, expandButtonArray, projectList } from './index';
 
 
 export const main = document.querySelector('.main');
@@ -130,6 +130,42 @@ export function repopulateDropDownList(){
 
         showTaskModal();
     
+}
+
+export function expandProject(){
+
+    expandButtonArray.forEach((button, index) => button.addEventListener('click', (e) =>{
+        if(e.target == expandButtonArray[index]){
+
+            let project = document.createElement('div');
+            main.appendChild(project);
+
+            let projectTitle = document.createElement('h1');
+            project.appendChild(projectTitle);
+            projectTitle.innerText = projectList[index].title;
+
+            let projectDescription = document.createElement('h2');
+            project.appendChild(projectDescription);
+            projectDescription.innerText = projectList[index].description;
+
+            projectList[index].projectArray.forEach((task) =>{
+                let newTask = document.createElement('li'); 
+                project.appendChild(newTask);
+                newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
+                /* new spans for each? or divs? include key not just value? */
+        
+               checkTaskPriority(task, newTask);
+                
+            })
+
+            /* needs to create new elements for each property of project,
+            and then all of it's tasks,
+            probably best to make a large div with a class of main card or something
+            change the default class of main/ add to the main class so that when its main project expands for exmaple
+            it's view styles have changed*/
+
+        }
+    }, {once: true})) 
 }
 
 

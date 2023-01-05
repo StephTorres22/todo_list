@@ -1,5 +1,7 @@
 /* TODO...
     
+-would be nice to alert within each input if not filled in as part of form validation.
+
 -A sort by function would be cool, i.e date, or priority
 
 -filter function
@@ -21,6 +23,10 @@
     -split search results and calendar with clock
     -show all project in a slightly larger project card in a grid? 
      obsolete if search funtion exists. 
+
+-be able to edit projects through large cards  
+
+-need to add functionality to remove button, i.e, removes project from main page if expanded
 
 -Need info to stay after reload, local storage, or JSON?     
 */
@@ -83,6 +89,7 @@ domModule.submitProjectButton.addEventListener('click', function(e){
     if(projectFormValidation() == true){
         addProjectToList();
         addListenerToRemoveButton();
+        domModule.expandProject();
         domModule.repopulateDropDownList();
         domModule.closeTaskModal();
         changeTaskSubmitID();
@@ -294,7 +301,7 @@ function displayTasks(index){
         
     let targetTaskDiv = taskListDivArray[index];    
 
-    if(targetTaskDiv.hasChildNodes !== true){
+    if(targetTaskDiv.hasChildNodes == false){
         while (targetTaskDiv.firstChild){
             targetTaskDiv.removeChild(targetTaskDiv.firstChild);
         }
@@ -305,19 +312,29 @@ function displayTasks(index){
         targetTaskDiv.appendChild(newTask);
         newTask.innerText = `${task.title}`;
 
-        if(`${task.priority}` == 'low'){
-            newTask.style.backgroundColor = 'yellow';
-        }else if(`${task.priority}` == 'medium'){
-            newTask.style.backgroundColor = 'orange';
-        }else if(`${task.priority}` == 'high'){
-            newTask.style.backgroundColor = 'red';
-        }
-        /* Just using these as basic colours, can be more specific later if i want. 
-        this probably becomes very slow as projects grow, deleting, recreating elements each time.
-        crude fix.*/ 
-          
+        checkTaskPriority(task, newTask);   
     })  
     
+}
+
+export function checkTaskPriority(task, newTask){
+
+    if(`${task.priority}` == 'low'){
+        newTask.style.backgroundColor = 'yellow';
+    }
+    if(`${task.priority}` == 'medium'){
+        newTask.style.backgroundColor = 'orange';
+    }
+    if(`${task.priority}` == 'high'){
+        newTask.style.backgroundColor = 'red';
+    }
+    if(`${task.priority}` == 'complete'){
+        newTask.style.backgroundColor = 'green';
+    }
+     /* Just using these as basic colours, can be more specific later if i want. 
+        this probably becomes very slow as projects grow, deleting, recreating elements each time.
+        crude fix.*/ 
+        /* should add some transparency so it's not too garish */
 }
 
 function getRadioGroupValue(){
@@ -335,6 +352,7 @@ function getRadioGroupValue(){
     couldn't work it out. */
     
 }
+
 
 /* function showLocalStorage(){
     
