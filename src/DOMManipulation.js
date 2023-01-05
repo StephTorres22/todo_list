@@ -14,7 +14,12 @@ addTaskSVG.addEventListener('click', () => {
     /* this checks to see if taskForm already had dropdownlist as a child node
     if yes, it just opens the modal, if not, repopulates and creates dropdown.
     this stops duplication of options */
-    return (inputDiv.contains(createDropDownList.projectDropDownList) ? showTaskModal() : repopulateDropDownList())
+    if(projectList.length > 0){
+        return (inputDiv.contains(createDropDownList.projectDropDownList) ? showTaskModal() : repopulateDropDownList())
+    }else {
+        alert("Please make a project to add your task to")
+        showProjectModal()
+    }
 
 });
 
