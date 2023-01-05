@@ -140,6 +140,11 @@ export function expandProject(){
             let project = document.createElement('div');
             main.appendChild(project);
 
+            let title;
+            createElement(title, 'h1', project).innerText = projectList[index].title
+            /* wanted to be able to do innertext part inside createElement */
+            
+
             let projectTitle = document.createElement('h1');
             project.appendChild(projectTitle);
             projectTitle.innerText = projectList[index].title;
@@ -167,6 +172,15 @@ export function expandProject(){
         }
     }, {once: true})) 
 }
+
+function createElement(name, element, destination){
+
+    name = document.createElement(`${element}`);
+    destination.appendChild(name);
+    return name
+    
+}
+/* time saver! not quite, unable to pass parameter in to propety of projectlist item
 
 
 /* REMEMBER TO REMOVE THIS */
