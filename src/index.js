@@ -9,12 +9,9 @@
     does main then become obsolete?
 
     style forms
-
-    stlye sidebar cards, buttons lis etc
     
 -A sort by function would be cool, i.e date, or priority
 
--Validation for form, with alert
 
 */
 
