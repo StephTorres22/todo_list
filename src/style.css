@@ -55,7 +55,8 @@ body{
 .smallIcon:hover,
 .newTaskButton:hover,
 .removeProjectButton:hover,
-.expandButton:hover{
+.expandButton:hover,
+.formButtons:hover{
     filter: 
         invert(0.5)
         sepia(1)
@@ -159,9 +160,12 @@ li{
 /* MODAL AND FORM STYLES */
 
 .modal{
+
+    border-style: none;
     border-radius: 10px;
-    height: 15rem;
+    height: 17rem;
 }
+
 
 .modal form{
     display: flex;
@@ -173,6 +177,7 @@ li{
 .modal form legend{
     font-size: 1.75rem;
     margin-bottom: .75rem;
+    text-decoration: underline;
 }
 
 .modal form input{
@@ -183,7 +188,26 @@ li{
 
 .modal form .buttonDiv{
     display: flex;
-    justify-self: baseline;
+    justify-content: flex-end;
+    padding-top: 2rem;
+    
+
+}
+#projectFormModal .buttonDiv{
+    margin-top: 5rem;
+}
+
+.projectInputDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 input[type ="text"]{
@@ -195,15 +219,37 @@ input[type ="text"]{
 
 input[type="date"]{
     font-family: Arial, Helvetica, sans-serif;
-    padding: .8rem 0rem;/* size and height don't work on date inputs, needed to play with padding */
+    /* padding: .8rem 0rem;/* size and height don't work on date inputs, needed to play with padding */
     border-radius: 5px;
     background-color: var(--tertiary-color);
     border-color: var(--secondary-color);
     border-style: solid;
 }
 
+select{
+    font-size: 1.25rem;
+    border-style: solid;
+    border-color: var(--secondary-color);
+    background-color: var(--tertiary-color);
+    border-radius: 5px;
+}
 
-input:focus{
+
+input:focus, select:focus{
     outline: none;
     border-color: var(--highlight-color);
 }
+
+.formButtons{
+    width: auto;
+    height: 2.5rem;
+    margin: .25rem;
+}
+
+.buttonDiv button{
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+

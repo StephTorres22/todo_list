@@ -44,14 +44,15 @@
         <form action="./index.html" id="projectForm">
 
             <legend>Project Details</legend>
-
-            <input type="text" name="projectTitle" id="projectTitle" placeholder="Project Name" required>
-            <input type="text" name="description" id="description" placeholder="Description" required>
-
+            
+            <div class="projectInputDiv">
+                <input type="text" name="projectTitle" id="projectTitle" placeholder="Project Name" required>
+                <input type="text" name="description" id="description" placeholder="Description" required>
+            </div>    
             <div class="buttonDiv">
-                <button type="submit" class="submitProject" id="submitProjectButton">Add Project</button>
-                <button type="reset">Clear</button>
-                <button type="button" class="closeModal" id="closeProjectModal">&times;</button>
+                <button type="submit" class="submitProject" id="submitProjectButton"><img src="./assets/plus.svg" alt="sumbit project button" class="formButtons"></button>
+                <button type="reset"><img src="./assets/backspace-outline.svg" alt="form reset button" class="formButtons"></button>
+                <button type="button" class="closeModal" id="closeProjectModal"><img src="./assets/close-box-outline.svg" alt="close form button" class="formButtons"></button>
             </div>
                 
 
@@ -60,26 +61,27 @@
 
     </dialog>
 
-    <dialog class="modal" id="taskFormModal">
+    <dialog class="modal" id="taskFormModal" >
 
         <form action="./index.html" id="taskForm">
 
             <legend>Task Details</legend>
+            <div class="inputDiv">
+                <input type="text" name="taskTitle" id="taskTitle" placeholder="Task Name" required>
+                <input type="text" name="taskDescription" id="taskDescription" placeholder="Task Description" required>
+                <input type="date" name="dueDate" id="dueDate">
 
-            <input type="text" name="taskTitle" id="taskTitle" placeholder="Task Name" required>
-            <input type="text" name="taskDescription" id="taskDescription" placeholder="Task Description" required>
-            <input type="date" name="dueDate" id="dueDate">
-
-            <div class="priorityRadio">
-                <input type="radio" name="priority" id="priorityHigh" value="high">High</input>
-                <input type="radio" name="priority" id="priorityMedium" value="medium">Medium</input>
-                <input type="radio" name="priority" id="priorityLow" value="low">Low</input>
+                <div class="priorityRadio">
+                    <input type="radio" name="priority" id="priorityHigh" value="high">High</input>
+                    <input type="radio" name="priority" id="priorityMedium" value="medium">Medium</input>
+                    <input type="radio" name="priority" id="priorityLow" value="low">Low</input>
+                </div>
             </div>
-
             <div class="buttonDiv">
-                <button type="button" class="submitTask">Add Task to Project</button>
-                <button type="reset">Clear</button>
-                <button type="button" class="closeModal" id="closeTaskModal">&times;</button>
+                <img src="./assets/note-plus-outline.svg" alt="addTaskImage" class="formButtons" id="submitTaskButton">                
+                <button type="reset"><img src="./assets/backspace-outline.svg" alt="clear button" class="formButtons"></button>
+                <img src="./assets/close-box-outline.svg" alt="close button" class="formButtons" id="closeTaskModal">
+                
             </div>
 
         </form>

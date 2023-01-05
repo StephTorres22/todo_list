@@ -8,12 +8,13 @@ export const main = document.querySelector('.main');
 export const sideBar = document.querySelector('.sideBar');
 export const addProjectButton = document.getElementById('addProject');
 export const addTaskSVG = document.getElementById('addTaskSVG');
+export const inputDiv = document.querySelector('.inputDiv');
 
 addTaskSVG.addEventListener('click', () => {
     /* this checks to see if taskForm already had dropdownlist as a child node
     if yes, it just opens the modal, if not, repopulates and creates dropdown.
     this stops duplication of options */
-    return (taskForm.contains(createDropDownList.projectDropDownList) ? showTaskModal() : repopulateDropDownList())
+    return (inputDiv.contains(createDropDownList.projectDropDownList) ? showTaskModal() : repopulateDropDownList())
 
 });
 
@@ -42,7 +43,7 @@ export const priorityHigh = document.getElementById('priorityHigh');
 export const priorityMedium = document.getElementById('priorityMedium');
 export const priorityLow = document.getElementById('priorityLow');
 //export const projectDropDownList = document.getElementById('projectListDropDown');
-export const submitTaskButton = document.querySelector('.submitTask');
+export const submitTaskButton = document.getElementById('submitTaskButton');
 export const closeTaskModalButton = document.getElementById('closeTaskModal');
 
 
@@ -82,7 +83,7 @@ export const createDropDownList = (() => {
     projectDropDownList.setAttribute('name', 'projectDropDownList');
     projectDropDownList.setAttribute('id', 'projectDropDownList');
 
-    taskForm.appendChild(projectDropDownList);
+    inputDiv.appendChild(projectDropDownList);
     return {projectDropDownList};
 })()
 /* Using an IIFE so that the selection exists straightaway and returns the projectDropDownList object */
@@ -96,8 +97,8 @@ export function removeDropDownListFromTaskForm(){
     }
 
     //this should remove dropDownList from form
-    if (taskForm.contains(createDropDownList.projectDropDownList)){
-        taskForm.removeChild(createDropDownList.projectDropDownList);
+    if (inputDiv.contains(createDropDownList.projectDropDownList)){
+        inputDiv.removeChild(createDropDownList.projectDropDownList);
     }
      
 }
@@ -107,12 +108,12 @@ export function repopulateDropDownList(){
     
     /* hoping this will work almost like a refresh */
 
-    if (taskForm.contains(createDropDownList.projectDropDownList)){
+    if (inputDiv.contains(createDropDownList.projectDropDownList)){
         removeDropDownListFromTaskForm();
         }
     
     
-        taskForm.appendChild(createDropDownList.projectDropDownList);
+        inputDiv.appendChild(createDropDownList.projectDropDownList);
 
         projectList.forEach((project, index) => {
             let newProjectOption = document.createElement('option');
@@ -129,6 +130,7 @@ export function repopulateDropDownList(){
 
 /* REMEMBER TO REMOVE THIS */
 window.dropDownList = createDropDownList.projectDropDownList;
+window.inputDiv = inputDiv;
 
 
        

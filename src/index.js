@@ -107,7 +107,7 @@ function projectFormValidation(){
 
 domModule.submitTaskButton.addEventListener('click', (e) => {
     
-    if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
+    if(domModule.inputDiv.contains(domModule.createDropDownList.projectDropDownList)){
         if(taskFormValidationViaSVG() == true){
             addTaskViaSVG();
             domModule.closeTaskModal();

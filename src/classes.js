@@ -47,7 +47,7 @@ export class Project{
         newTaskButton.innerText = 'Add Task';
         newTaskButtonArray.push(newTaskButton);
         newTaskButton.addEventListener('click', () => {
-            if(domModule.taskForm.contains(domModule.createDropDownList.projectDropDownList)){
+            if(domModule.inputDiv.contains(domModule.createDropDownList.projectDropDownList)){
                 domModule.removeDropDownListFromTaskForm();
 
             }
@@ -115,19 +115,9 @@ export class Project{
 
         this.projectID = newID;
     }
- */
-   
-
- 
-
-    
-
-
-
-
-
-    
+ */    
 }
+
 
 export class Task{
 
