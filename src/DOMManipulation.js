@@ -137,34 +137,42 @@ export function expandProject(){
     expandButtonArray.forEach((button, index) => button.addEventListener('click', (e) =>{
         if(e.target == expandButtonArray[index]){
 
-            let project = document.createElement('div');
-            main.appendChild(project);
+            /* this allows us to switch between projects on expand. */
+            if(isProjectAlreadyInMainDisplay(index)){
 
-            let title;
-            createElement(title, 'h1', project).innerText = projectList[index].title
+                main.setAttribute('id', `${projectList[index].title}`)
+
+                deleteCurrentDisplay(main);
+
+                let project = document.createElement('div');
+                main.appendChild(project);
+
+                let title;
+                createElement(title, 'h1', project).innerText = projectList[index].title
                                                
             /* wanted to be able to do innertext part inside createElement */
             /* this is cool but, can't work on the html element
             e.g can't add classes, or attirubes */
             
 
-            let projectTitle = document.createElement('h1');
-            project.appendChild(projectTitle);
-            projectTitle.innerText = projectList[index].title;
+                let projectTitle = document.createElement('h1');
+                project.appendChild(projectTitle);
+                projectTitle.innerText = projectList[index].title;
 
-            let projectDescription = document.createElement('h2');
-            project.appendChild(projectDescription);
-            projectDescription.innerText = projectList[index].description;
+                let projectDescription = document.createElement('h2');
+                project.appendChild(projectDescription);
+                projectDescription.innerText = projectList[index].description;
 
-            projectList[index].projectArray.forEach((task) =>{
-                let newTask = document.createElement('li'); 
-                project.appendChild(newTask);
-                newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
-                /* new spans for each? or divs? include key not just value? */
-        
-               checkTaskPriority(task, newTask);
+                projectList[index].projectArray.forEach((task) =>{
+                    let newTask = document.createElement('span'); 
+                    project.appendChild(newTask);
+                    newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
+                    /* new spans for each? or divs? include key not just value? */
                 
-            })
+                   checkTaskPriority(task, newTask);
+
+                })
+            }
 
             /* needs to create new elements for each property of project,
             and then all of it's tasks,
@@ -173,8 +181,15 @@ export function expandProject(){
             it's view styles have changed*/
 
         }
-    }, {once: true})) 
+    })) 
 }
+
+const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id') !== projectList[index.title]) ? true : false
+        
+    
+/* could use ternary operator to be more explicit, set as arrow to return statemnet */
+
+
 
 
 /* POTENTIAL HELPER FUNCTIONS */
@@ -200,6 +215,16 @@ export function setListenerOnButtonFromArray(array, type, callBack){
 
 }
 /* this works pretty well, is it usable in this project? */
+
+
+export function deleteCurrentDisplay(target){
+
+    if(target.hasChildNodes !== true){
+        while(target.firstChild){
+            target.removeChild(target.firstChild);
+        }
+    }
+}
 
 
 

@@ -90,7 +90,7 @@ domModule.submitProjectButton.addEventListener('click', function(e){
         addProjectToList();
         addListenerToRemoveButton();
         domModule.expandProject();
-        domModule.setListenerOnButtonFromArray(expandButtonArray, 'click', alert)
+       // domModule.setListenerOnButtonFromArray(expandButtonArray, 'click', alert)
         /* this is pretty cool, works for adding one function to buttons */
 
         domModule.repopulateDropDownList();
@@ -309,6 +309,7 @@ function displayTasks(index){
             targetTaskDiv.removeChild(targetTaskDiv.firstChild);
         }
     }
+    /* should be able to replace this with deleteCurrentDisplay */
 
     projectList[index].projectArray.forEach((task) => {
         let newTask = document.createElement('li'); 
