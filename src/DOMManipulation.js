@@ -142,7 +142,10 @@ export function expandProject(){
 
             let title;
             createElement(title, 'h1', project).innerText = projectList[index].title
+                                               
             /* wanted to be able to do innertext part inside createElement */
+            /* this is cool but, can't work on the html element
+            e.g can't add classes, or attirubes */
             
 
             let projectTitle = document.createElement('h1');
@@ -173,14 +176,31 @@ export function expandProject(){
     }, {once: true})) 
 }
 
+
+/* POTENTIAL HELPER FUNCTIONS */
+
 function createElement(name, element, destination){
 
     name = document.createElement(`${element}`);
     destination.appendChild(name);
+
     return name
     
 }
 /* time saver! not quite, unable to pass parameter in to propety of projectlist item
+does'nt quite do everything i wanted*/
+
+export function setListenerOnButtonFromArray(array, type, callBack){
+
+    array.forEach((element, index) => element.addEventListener(type, (e) =>{
+        if(e.target == array[index]){
+            callBack()
+        }
+    }))
+
+}
+/* this works pretty well, is it usable in this project? */
+
 
 
 /* REMEMBER TO REMOVE THIS */

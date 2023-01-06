@@ -90,6 +90,9 @@ domModule.submitProjectButton.addEventListener('click', function(e){
         addProjectToList();
         addListenerToRemoveButton();
         domModule.expandProject();
+        domModule.setListenerOnButtonFromArray(expandButtonArray, 'click', alert)
+        /* this is pretty cool, works for adding one function to buttons */
+
         domModule.repopulateDropDownList();
         domModule.closeTaskModal();
         changeTaskSubmitID();
@@ -301,7 +304,7 @@ function displayTasks(index){
         
     let targetTaskDiv = taskListDivArray[index];    
 
-    if(targetTaskDiv.hasChildNodes == false){
+    if(targetTaskDiv.hasChildNodes !== true){
         while (targetTaskDiv.firstChild){
             targetTaskDiv.removeChild(targetTaskDiv.firstChild);
         }
@@ -311,7 +314,7 @@ function displayTasks(index){
         let newTask = document.createElement('li'); 
         targetTaskDiv.appendChild(newTask);
         newTask.innerText = `${task.title}`;
-
+        
         checkTaskPriority(task, newTask);   
     })  
     
@@ -319,17 +322,22 @@ function displayTasks(index){
 
 export function checkTaskPriority(task, newTask){
 
+    let low = 'rgba(225, 215, 0, .5)';
+    let medium = 'rgba(225, 140, 0, .5)';
+    let high = 'rgba(225, 0, 0, .5)';
+    let complete = 'rgba(50, 205, 50, .5)'
+
     if(`${task.priority}` == 'low'){
-        newTask.style.backgroundColor = 'yellow';
+        newTask.style.backgroundColor = low;
     }
     if(`${task.priority}` == 'medium'){
-        newTask.style.backgroundColor = 'orange';
+        newTask.style.backgroundColor = medium;
     }
     if(`${task.priority}` == 'high'){
-        newTask.style.backgroundColor = 'red';
+        newTask.style.backgroundColor = high;
     }
     if(`${task.priority}` == 'complete'){
-        newTask.style.backgroundColor = 'green';
+        newTask.style.backgroundColor = complete;
     }
      /* Just using these as basic colours, can be more specific later if i want. 
         this probably becomes very slow as projects grow, deleting, recreating elements each time.
