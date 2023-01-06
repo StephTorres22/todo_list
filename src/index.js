@@ -14,6 +14,8 @@
     include a check box for each task to change priority to complete, change colour.
         need to add condition so this happens in project side cards too.
 
+    would like to update main card when new tasked are added, right now they are displayed staightaway
+
 -Default load page, large calender showing 3days with task and project for today, tomorrow, and day after
         would be cool to include a clock, round, minimal, moving hands,
         
@@ -267,15 +269,21 @@ function addTaskViaSVG(index, selection){
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
 
-    if(domModule.isProjectAlreadyInMainDisplay !== true){
+    /* Checks ID on main, meaning id project is open in main,
+    then same 3 lines of code to check if there are any elements present,
+    if so remove them all, 
+    then redisplay info, update. */
+    if(domModule.main.getAttribute('id') == projectList[index].title){
         if(domModule.main.hasChildNodes !== true){
-            while(domModule.main.firstChild){domModule.main.removeChild(domModule.main.firstChild)}
-        };        
-        domModule.displayCurrentProjectData(index, domModule.main);
-    }
+            while(domModule.main.firstChild){
+                domModule.main.removeChild(domModule.main.firstChild)
+            }
+        };
+        domModule.displayCurrentProjectData(index, domModule.main)   
 
-} 
+    } 
 
+}
 export function changeTaskSubmitID(){
     newTaskButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
         if(e.target == newTaskButtonArray[index]){
@@ -296,16 +304,18 @@ function addTaskViaProjectCard(index, selection){
                             `${domModule.taskDueDate.value}`);
 
     projectList[index].projectArray.push(newTask);
+
+    
+    if(domModule.main.getAttribute('id') == projectList[index].title){
+        if(domModule.main.hasChildNodes !== true){
+            while(domModule.main.firstChild){
+                domModule.main.removeChild(domModule.main.firstChild)
+            }
+        };
+        domModule.displayCurrentProjectData(index, domModule.main)
+    }
     domModule.submitTaskButton.removeAttribute('id');
     displayTasks(index);
-
-    /* Checks if project is on main display, if so, refreshes it on submit */
-    if(domModule.isProjectAlreadyInMainDisplay !== true){
-        if(domModule.main.hasChildNodes !== true){
-            while(domModule.main.firstChild){domModule.main.removeChild(domModule.main.firstChild)}
-        };        
-        domModule.displayCurrentProjectData(index, domModule.main);
-    }
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
     
@@ -338,10 +348,10 @@ function displayTasks(index){
 
 export function checkTaskPriority(task, newTask){
 
-    let low = 'rgba(225, 215, 0, .5)';
-    let medium = 'rgba(225, 140, 0, .5)';
-    let high = 'rgba(225, 0, 0, .5)';
-    let complete = 'rgba(50, 205, 50, .5)'
+    let low = 'rgba(225, 215, 0, .3)';
+    let medium = 'rgba(225, 140, 0, .3)';
+    let high = 'rgba(225, 0, 0, .3)';
+    let complete = 'rgba(50, 205, 50, .3)'
 
     if(`${task.priority}` == 'low'){
         newTask.style.backgroundColor = low;
@@ -358,7 +368,7 @@ export function checkTaskPriority(task, newTask){
      /* Just using these as basic colours, can be more specific later if i want. 
         this probably becomes very slow as projects grow, deleting, recreating elements each time.
         crude fix.*/ 
-        /* should add some transparency so it's not too garish */
+        
 }
 
 function getRadioGroupValue(){

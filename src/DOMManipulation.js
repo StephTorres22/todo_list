@@ -139,6 +139,7 @@ export function expandProject(){
     expandButtonArray.forEach((button, index) => button.addEventListener('click', (e) =>{
         if(e.target == expandButtonArray[index]){
 
+            main.setAttribute('id', 'main');
             /* this allows us to switch between projects on expand. */
             if(isProjectAlreadyInMainDisplay(index)){
 
@@ -149,6 +150,8 @@ export function expandProject(){
                 };
 
                 displayCurrentProjectData(index, main);
+
+                
 
                
             }
@@ -163,7 +166,8 @@ export function expandProject(){
     })) 
 }
 
-export const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id') !== projectList[index.title]) ? true : false
+export const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id') !== projectList[index].title) ? true : false
+/* this only helps to switch between cards in main view, didn't help to update main card. */
    
 
 export function displayCurrentProjectData(index, target){
@@ -224,19 +228,26 @@ export function setListenerOnButtonFromArray(array, type, callBack){
     }))
 
 }
+
 /* this works pretty well, is it usable in this project? */
 
 
-/* function deleteCurrentDisplay(target: HTMLElement){
+/* This doesn't work, because element becomes a Document, not HTMLElement, annoying. */
+function deleteCurrentDisplay(target){
 
-    if(target.hasChildNodes !== true){
-        while(target.firstChild){
-            target.removeChild(target.firstChild);
+    let parser = new DOMParser()
+
+    
+    let element = parser.parseFromString(target, "text/html")
+    if(element.hasChildNodes !== true){
+        while(element.firstChild){
+            element.removeChild(element.firstChild);
         }
     }
-} */ //Could possible work in typescript because you'll telling the function that it's working on an HTMLElement.
+} //Could possible work in typescript because you'll telling the function that it's working on an HTMLElement.
 /* This does not work, even if a DOM element is passed in as target.. why?
 trying to avoid repetition. */
+/* not working as i'd like, using this on add task methods just displays the task in main straightaway */
 
 
 
