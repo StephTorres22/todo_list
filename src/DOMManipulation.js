@@ -132,6 +132,8 @@ export function repopulateDropDownList(){
     
 }
 
+/* EXPANDING AND DISPLAYING PROJECTS IN MAIN */
+
 export function expandProject(){
 
     expandButtonArray.forEach((button, index) => button.addEventListener('click', (e) =>{
@@ -142,36 +144,13 @@ export function expandProject(){
 
                 main.setAttribute('id', `${projectList[index].title}`)
 
-                deleteCurrentDisplay(main);
+                if(main.hasChildNodes !== true){
+                    while(main.firstChild){main.removeChild(main.firstChild)}
+                };
 
-                let project = document.createElement('div');
-                main.appendChild(project);
+                displayCurrentProjectData(index, main);
 
-                let title;
-                createElement(title, 'h1', project).innerText = projectList[index].title
-                                               
-            /* wanted to be able to do innertext part inside createElement */
-            /* this is cool but, can't work on the html element
-            e.g can't add classes, or attirubes */
-            
-
-                let projectTitle = document.createElement('h1');
-                project.appendChild(projectTitle);
-                projectTitle.innerText = projectList[index].title;
-
-                let projectDescription = document.createElement('h2');
-                project.appendChild(projectDescription);
-                projectDescription.innerText = projectList[index].description;
-
-                projectList[index].projectArray.forEach((task) =>{
-                    let newTask = document.createElement('span'); 
-                    project.appendChild(newTask);
-                    newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
-                    /* new spans for each? or divs? include key not just value? */
-                
-                   checkTaskPriority(task, newTask);
-
-                })
+               
             }
 
             /* needs to create new elements for each property of project,
@@ -184,10 +163,41 @@ export function expandProject(){
     })) 
 }
 
-const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id') !== projectList[index.title]) ? true : false
-        
+export const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id') !== projectList[index.title]) ? true : false
+   
+
+export function displayCurrentProjectData(index, target){
+
+    let project = document.createElement('div');
+    target.appendChild(project);
+
+    let title;
+    createElement(title, 'h1', project).innerText = projectList[index].title
+                                   
+    /* wanted to be able to do innertext part inside createElement */
+    /* this is cool but, can't work on the html element
+    e.g can't add classes, or attirubes */
+
+
+    let projectTitle = document.createElement('h1');
+    project.appendChild(projectTitle);
+    projectTitle.innerText = projectList[index].title;
+
+    let projectDescription = document.createElement('h2');
+    project.appendChild(projectDescription);
+    projectDescription.innerText = projectList[index].description;
+
+    projectList[index].projectArray.forEach((task) =>{
+        let newTask = document.createElement('li'); 
+        project.appendChild(newTask);
+        newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
+                        
+       checkTaskPriority(task, newTask);
+
+    })
+}
     
-/* could use ternary operator to be more explicit, set as arrow to return statemnet */
+
 
 
 
@@ -217,14 +227,16 @@ export function setListenerOnButtonFromArray(array, type, callBack){
 /* this works pretty well, is it usable in this project? */
 
 
-export function deleteCurrentDisplay(target){
+/* function deleteCurrentDisplay(target: HTMLElement){
 
     if(target.hasChildNodes !== true){
         while(target.firstChild){
             target.removeChild(target.firstChild);
         }
     }
-}
+} */ //Could possible work in typescript because you'll telling the function that it's working on an HTMLElement.
+/* This does not work, even if a DOM element is passed in as target.. why?
+trying to avoid repetition. */
 
 
 

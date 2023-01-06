@@ -267,6 +267,13 @@ function addTaskViaSVG(index, selection){
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
 
+    if(domModule.isProjectAlreadyInMainDisplay !== true){
+        if(domModule.main.hasChildNodes !== true){
+            while(domModule.main.firstChild){domModule.main.removeChild(domModule.main.firstChild)}
+        };        
+        domModule.displayCurrentProjectData(index, domModule.main);
+    }
+
 } 
 
 export function changeTaskSubmitID(){
@@ -291,6 +298,14 @@ function addTaskViaProjectCard(index, selection){
     projectList[index].projectArray.push(newTask);
     domModule.submitTaskButton.removeAttribute('id');
     displayTasks(index);
+
+    /* Checks if project is on main display, if so, refreshes it on submit */
+    if(domModule.isProjectAlreadyInMainDisplay !== true){
+        if(domModule.main.hasChildNodes !== true){
+            while(domModule.main.firstChild){domModule.main.removeChild(domModule.main.firstChild)}
+        };        
+        domModule.displayCurrentProjectData(index, domModule.main);
+    }
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
     
