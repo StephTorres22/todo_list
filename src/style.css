@@ -3,7 +3,7 @@
     --main-color: rgb(8, 103, 187);
     --secondary-color: rgb(125, 172, 241);
     --tertiary-color: (245, 239, 239);
-    --highlight-color: yellow;
+    --highlight-color: rgb(255, 230, 0);
     
 }
 
@@ -24,6 +24,7 @@ body{
     "top top top top"
     "side main main rside"
     "side main main rside";
+    overflow: hidden;
 }
 
 /* SIDEBAR STYLES */
@@ -147,7 +148,7 @@ li{
 /* TOP BAR STYLES */
 .topBar{
 
-    min-width: 100vw;
+    min-width: 100vh;
     grid-area: top;
     background-color: var(--secondary-color);
 
@@ -267,6 +268,20 @@ input:focus, select:focus{
 }
 
 /* CLOCK STLYING */
+/* Thanks Kyle @ WebDevSimplified */
+
+.clock::after{
+    content: '';
+    position: absolute;
+    z-index: 11;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-50%, -50%);
+}
 .clock{
     margin-top: 2rem;
     width: 22rem;
@@ -306,18 +321,33 @@ input:focus, select:focus{
     position: absolute;
     bottom: 50%;
     left: 50%;
-    width: 1.5rem;
-    height: 40%;
+    width: 5px;    
     background-color: var(--secondary-color);
     transform-origin: bottom;
     transform: translateX(-50%) rotate(calc(var(--rotation)*1deg));
 }
 
+.clock .hand.minute{
+    height: 40%;
+}
+
+.clock .hand.hour{
+    height: 33.5%;
+}
+
+.clock .hand.second{
+    height: 47.5%;
+    background-color: var(--highlight-color);
+    z-index: 10;
+}
+
 .shape{
     position: absolute;
-    height: 2.5rem;
-    width: 1rem;
-    background-color: var(--secondary-color);
+    height: 0rem;
+    width: 5px;
+    border-top: 50px solid var(--secondary-color);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
     left: 50%;
     transform: translateX(-50%);
     margin-top: .5rem;

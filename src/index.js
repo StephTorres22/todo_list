@@ -36,7 +36,10 @@
 
 import { Project, Task } from './classes';
 import * as domModule from './DOMManipulation';
+import { setClock } from './clock';
 
+setClock()
+setInterval(setClock, 1000);
 
 const projectList = []
 
