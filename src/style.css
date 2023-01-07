@@ -345,12 +345,12 @@ input:focus, select:focus{
     position: absolute;
     height: 0rem;
     width: 5px;
-    border-top: 50px solid var(--secondary-color);
+    border-top: 50px solid;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     left: 50%;
     transform: translateX(-50%);
     margin-top: .5rem;
-
+    border-top-color: var(--secondary-color);
 }
 

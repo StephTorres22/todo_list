@@ -7,6 +7,9 @@ const hourHand = document.querySelector('[data-hour-hand]');
 const minuteHand = document.querySelector('[data-minute-hand]');
 const secondHand = document.querySelector('[data-second-hand]');
 
+const numberDivs = document.querySelectorAll('.number');
+const hours = Array.from(numberDivs);
+
 export function setClock(){
 
 
@@ -25,8 +28,30 @@ export function setClock(){
     setRotation(hourHand, hoursRatio);
     setRotation(minuteHand, minutesRation);
     setRotation(secondHand, secondsRatio);
+
+    highLightCurrentHour()
 }
 
 function setRotation(element, rotationRatio){
     element.style.setProperty('--rotation', rotationRatio*360)
 }
+
+function highLightCurrentHour(){
+
+   
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    
+    let highlightColor = 'rgb(225, 230, 0)'
+    /* not sure how to pull variable from css, that would be good. */
+
+    hours.forEach((hour, index) => {
+        if(hours.indexOf(hour) == currentHour){
+            hours[index-1].firstChild.nextSibling.style.borderTopColor = highlightColor;
+        }
+    })
+
+
+}
+
+window.hours = hours
