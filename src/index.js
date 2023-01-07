@@ -403,9 +403,7 @@ function getRadioGroupValue(){
 // TODO: remember to delete this, this means you can test/ console
 //what's happening!
 window.projectList = projectList;
-window.removeProjectButtonArray = removeProjectButtonArray;
-window.newTaskButtonArray = newTaskButtonArray;
-window.taskListDivArray = taskListDivArray;
+
 
 export {projectList}
 

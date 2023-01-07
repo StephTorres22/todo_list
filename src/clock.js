@@ -8,7 +8,7 @@ const minuteHand = document.querySelector('[data-minute-hand]');
 const secondHand = document.querySelector('[data-second-hand]');
 
 const numberDivs = document.querySelectorAll('.number');
-const hours = Array.from(numberDivs);
+
 
 export function setClock(){
 
@@ -41,6 +41,7 @@ function highLightCurrentHour(){
    
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
+    const hours = Array.from(numberDivs);
     
     let highlightColor = 'rgb(225, 230, 0)'
     /* not sure how to pull variable from css, that would be good. */
@@ -50,8 +51,5 @@ function highLightCurrentHour(){
             hours[index-1].firstChild.nextSibling.style.borderTopColor = highlightColor;
         }
     })
-
-
 }
 
-window.hours = hours

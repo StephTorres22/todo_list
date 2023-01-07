@@ -173,6 +173,7 @@ export const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id')
 export function displayCurrentProjectData(index, target){
 
     let project = document.createElement('div');
+    project.classList.add('mainProjectCard')
     target.appendChild(project);
 
     let title;
@@ -200,11 +201,6 @@ export function displayCurrentProjectData(index, target){
 
     })
 }
-    
-
-
-
-
 
 /* POTENTIAL HELPER FUNCTIONS */
 
@@ -248,8 +244,8 @@ trying to avoid repetition. */
 
 
 /* REMEMBER TO REMOVE THIS */
-window.dropDownList = createDropDownList.projectDropDownList;
-window.inputDiv = inputDiv;
+
+
 
 
        

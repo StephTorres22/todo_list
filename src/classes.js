@@ -133,6 +133,8 @@ export class Task{
   
 }
 
+/* REMEMBER TO REMOVE THESE */
+
 window.Task = Task;
 window.Project = Project;
 
