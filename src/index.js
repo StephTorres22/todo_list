@@ -1,6 +1,7 @@
 /* TODO...
     
 -would be nice to alert within each input if not filled in as part of form validation.
+    would have to do create this alert is js, looooonnnnnnnnnnnng!
 
 -A sort by function would be cool, i.e date, or priority
 

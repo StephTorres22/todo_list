@@ -233,18 +233,14 @@ export function setListenerOnButtonFromArray(array, type, callBack){
 
 
 /* This doesn't work, because element becomes a Document, not HTMLElement, annoying. */
-function deleteCurrentDisplay(target){
-
-    let parser = new DOMParser()
-
+/* function deleteCurrentDisplay(target: HTMLElement){
     
-    let element = parser.parseFromString(target, "text/html")
-    if(element.hasChildNodes !== true){
-        while(element.firstChild){
-            element.removeChild(element.firstChild);
+    if(target.hasChildNodes !== true){
+        while(target.firstChild){
+            target.removeChild(target.firstChild);
         }
     }
-} //Could possible work in typescript because you'll telling the function that it's working on an HTMLElement.
+} */ //Could possible work in typescript because you'll telling the function that it's working on an HTMLElement.
 /* This does not work, even if a DOM element is passed in as target.. why?
 trying to avoid repetition. */
 /* not working as i'd like, using this on add task methods just displays the task in main straightaway */

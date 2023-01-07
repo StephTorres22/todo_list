@@ -4,22 +4,26 @@
     --secondary-color: rgb(125, 172, 241);
     --tertiary-color: (245, 239, 239);
     --highlight-color: yellow;
+    
 }
 
 body{
     margin: 0;
+    
+
+    
+    
 }
 
-#content{
-
+#content{   
     height: auto;
     display: grid;
-    grid-template-columns: .5fr 1.5fr 1.5fr;
+    grid-template-columns: .5fr 1.5fr 1.5fr 1fr;
     grid-template-rows: .5fr 1.5fr 1.5fr;
     grid-template-areas: 
-    "top top top"
-    "side main main"
-    "side main main";
+    "top top top top"
+    "side main main rside"
+    "side main main rside";
 }
 
 /* SIDEBAR STYLES */
@@ -72,10 +76,10 @@ body{
 .sideBarCard{
     border-radius: 10px;
     background-color: white;
-    max-width: inherit;
+    max-width: 14rem;
     max-height: 15rem;
     padding: .5rem;
-    
+    overflow: hidden;
     margin-bottom: 1rem;
     
 }
@@ -96,7 +100,7 @@ body{
     margin-right: 0;
     padding: 0;
     border: 2px;
-    overflow: scroll;
+    overflow: hidden;
     
 }
 ::-webkit-scrollbar {
@@ -253,7 +257,70 @@ input:focus, select:focus{
     padding: 0;
 }
 
-/* MAIN COMPARTMENT STYLES */
+/* RIGHT SIDE COMPARTMENT STYLES */
 
+.rightSide{
+    grid-area: rside;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+}
 
+/* CLOCK STLYING */
+.clock{
+    margin-top: 2rem;
+    width: 22rem;
+    height: 22rem;
+    border-style: solid;
+    
+    border-color: var(--secondary-color);
+    border-radius: 50%;
+    background-color: var(--main-color);
+    position: relative;
+}
+
+.clock .number{
+    
+    --rotation: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotation));
+}
+
+.clock .number1{ --rotation: 30deg;}
+.clock .number2{ --rotation: 60deg;}
+.clock .number3{ --rotation: 90deg;}
+.clock .number4{ --rotation: 120deg;}
+.clock .number5{ --rotation: 150deg;}
+.clock .number6{ --rotation: 180deg;}
+.clock .number7{ --rotation: 210deg;}
+.clock .number8{ --rotation: 240deg;}
+.clock .number9{ --rotation: 270deg;}
+.clock .number10{ --rotation: 300deg;}
+.clock .number11{ --rotation: 330deg;}
+
+.clock .hand{
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 1.5rem;
+    height: 40%;
+    background-color: var(--secondary-color);
+    transform-origin: bottom;
+    transform: translateX(-50%) rotate(calc(var(--rotation)*1deg));
+}
+
+.shape{
+    position: absolute;
+    height: 2.5rem;
+    width: 1rem;
+    background-color: var(--secondary-color);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: .5rem;
+
+}
 
