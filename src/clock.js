@@ -40,13 +40,22 @@ function highLightCurrentHour(){
 
    
     const currentDate = new Date();
-    const currentHour = currentDate.getHours();
+    let currentHour = currentDate.getHours();
     const hours = Array.from(numberDivs);
     
     let highlightColor = 'rgb(225, 230, 0)'
     /* not sure how to pull variable from css, that would be good. */
 
+    
+
     hours.forEach((hour, index) => {
+
+        if(currentHour > 12){
+            currentHour = currentHour - 12
+        }
+        if(currentHour == 0){
+            currentHour = 12
+        }
         if(hours.indexOf(hour) == currentHour){
             hours[index-1].firstChild.nextSibling.style.borderTopColor = highlightColor;
         }

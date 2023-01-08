@@ -3,6 +3,9 @@ import { projectList, removeProjectButtonArray, newTaskButtonArray, changeTaskSu
 import * as domModule from './DOMManipulation';
 
 
+/* add a time created property to both project and task, will need get/set time functionality
+this will then be displayed when project is displayed in main */
+
 export class Project{
 
     constructor(title, description, index){

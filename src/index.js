@@ -167,47 +167,33 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
 
 domModule.closeTaskModalButton.addEventListener('click', domModule.closeTaskModal);
 
+
 /* TASK FORM VALIDATION */
 
 /* validations work but have click handling vialion errors...? 
 need to add condition of if task duedate is in the past.*/
 
-function taskFormValidationViaSVG(index, selection){
+function taskFormValidationViaSVG(index){
 
-    selection = getRadioGroupValue();
     index = findProjectIndex();
-    const taskTitles = projectList[index].projectArray.map((task) => task.title);
-
-    if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
-        alert("Please give your new task a name.");
-        return false
+    if(checkTaskFormInputs(index)){
+        return true
     }
-    if(taskTitles.includes(domModule.taskTitle.value)){
-        alert("A task with that name already exists within this project, please choose another name.");
-        return false
-    }
-    if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
-        alert("Please describe your new task.");
-        return false
-    }
-    if(selection == null){
-        alert("Please select a relevant priority level.");
-        return false
-    }
-    if(domModule.taskDueDate.value == null || domModule.taskDueDate.value == undefined || domModule.taskDueDate.value == ''){
-        alert("Please pick a due date for your new task.");
-        return false
-    } 
-    return true
-
 }
 
-function taskFormValidationViaProjectCard(index, selection){
+function taskFormValidationViaProjectCard(index){
 
-    selection = getRadioGroupValue();
     index = domModule.submitTaskButton.getAttribute('id');
-    const taskTitles = projectList[index].projectArray.map((task) => task.title);
+    if(checkTaskFormInputs(index)){
+        return true
+    }
+}
 
+function checkTaskFormInputs(index){
+
+    let selection = getRadioGroupValue();
+    const taskTitles = projectList[index].projectArray.map((task) => task.title);
+    const currentDate = new Date()
     if(domModule.taskTitle.value == '' || domModule.taskTitle.value == null){
         alert("Please give your new task a name.");
         return false
@@ -216,10 +202,10 @@ function taskFormValidationViaProjectCard(index, selection){
         alert("A task with that name already exists within this project, please choose another name.");
         return false
     }
-    if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
+    /* if(domModule.taskDescription.value == '' || domModule.taskDescription.value == null){
         alert("Please describe your new task.");
         return false
-    }
+    } */
     if(selection == null){
         alert("Please select a relevant priority level.");
         return false
@@ -228,8 +214,13 @@ function taskFormValidationViaProjectCard(index, selection){
         alert("Please pick a due date for your new task.");
         return false
     }
+    /* uses new Date object to convert string representation of taskDueDate.value and compare it against current date.  */
+    if(( new Date(domModule.taskDueDate.value)) < currentDate){
+        alert('This date has already passed, please pick a future date')
+        return false
+    }
+    
     return true
-
 }
 
 

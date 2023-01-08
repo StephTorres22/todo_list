@@ -172,6 +172,8 @@ export const isProjectAlreadyInMainDisplay = (index) => (main.getAttribute('id')
 
 export function displayCurrentProjectData(index, target){
 
+    
+
     let project = document.createElement('div');
     project.classList.add('mainProjectCard')
     target.appendChild(project);
@@ -193,9 +195,10 @@ export function displayCurrentProjectData(index, target){
     projectDescription.innerText = projectList[index].description;
 
     projectList[index].projectArray.forEach((task) =>{
+        let dueDate = new Date(`${task.dueDate}`).toDateString()
         let newTask = document.createElement('li'); 
         project.appendChild(newTask);
-        newTask.innerText = `${task.title} ${task.description} ${task.dueDate}`;
+        newTask.innerText = `Title: ${task.title}, Description: ${task.description}, Due Date: ${dueDate}`;
                         
        checkTaskPriority(task, newTask);
 
