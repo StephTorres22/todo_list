@@ -8,12 +8,13 @@ this will then be displayed when project is displayed in main */
 
 export class Project{
 
-    constructor(title, description, index){
+    constructor(title, description, dateCreated){
         this.title = title;
         this.description = description;
+        this.dateCreated = dateCreated;
         this.projectArray = [];
-    
-
+        
+        
     }     
     
     displayProjectData(){
@@ -94,44 +95,31 @@ export class Project{
         return index;
     }
     
-    addProjectToStorage(){
+ 
 
-        /* Adds project to local storage with title and description as key and array as value pair */
-
-        localStorage.setItem(`${this.title}, ${this.description}`, `${this.projectArray}`);
     
-    }
-
-    removeProjectFromStorage(){
-
-        localStorage.removeItem(`${this.title}, ${this.description}`);
-
-    }
 
     get projectID(){
 
         return `${this.title}` + `${this.findProjectIndex()}`
 
     }
-
-    /* set projectID(newID){
-
-        this.projectID = newID;
-    }
- */    
+    
 }
 
 
 export class Task{
 
 
-    constructor(title, description, priority, dueDate){
+    constructor(title, description, priority, dueDate, dateCreated){
         
         this.title = title;
         this.description = description;        
         this.priority = priority;
         this.dueDate = dueDate;        
+        this.dateCreated = dateCreated
     }
+
 
   
 }

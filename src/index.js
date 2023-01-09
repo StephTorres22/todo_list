@@ -41,7 +41,7 @@ import { setClock } from './clock';
 setClock()
 setInterval(setClock, 1000);
 
-const projectList = []
+let projectList = []
 
 export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
 
@@ -54,10 +54,12 @@ export const removeProjectButtonArray = Array.from(document.querySelectorAll('.r
 function addListenerToRemoveButton(){
     removeProjectButtonArray.forEach((button, index) => button.addEventListener('click', (e) => {
         if(e.target == removeProjectButtonArray[index]){ 
+            
             projectList.splice(index, 1);
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
             taskListDivArray.splice(index, 1);
+            updateProjectListInLocalStorage();
 
             domModule.removeDropDownListFromTaskForm();
             domModule.repopulateDropDownList();
@@ -96,8 +98,7 @@ domModule.submitProjectButton.addEventListener('click', function(e){
         addProjectToList();
         addListenerToRemoveButton();
         domModule.expandProject();
-       // domModule.setListenerOnButtonFromArray(expandButtonArray, 'click', alert)
-        /* this is pretty cool, works for adding one function to buttons */
+    
 
         domModule.repopulateDropDownList();
         domModule.closeTaskModal();
@@ -162,6 +163,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     
     //resets listeners on new task buttons to reassign id so that new task 
     //can be pushed to correct array 
+    updateProjectListInLocalStorage();
 
 })
 
@@ -227,14 +229,14 @@ function checkTaskFormInputs(index){
 /* ADDING PROJECTS  */
 function addProjectToList(){
 
-    let newProject = new Project(`${domModule.projectTitle.value}`, `${domModule.projectDescription.value}`);
+    
+
+    let newProject = new Project(`${domModule.projectTitle.value}`, `${domModule.projectDescription.value}`, new Date());
     projectList.push(newProject);
     newProject.displayProjectData();
     newProject.addProjectToDropDownSelection();
-
-   // newProject.addProjectToStorage();
     domModule.closeProjectModal();      
-      
+    updateProjectListInLocalStorage();  
 }
 
 
@@ -259,7 +261,8 @@ function addTaskViaSVG(index, selection){
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                            `${domModule.taskDescription.value}`,
                             selection,
-                           `${domModule.taskDueDate.value}`);
+                           `${domModule.taskDueDate.value}`,
+                            new Date());
 
     projectList[index].projectArray.push(newTask);
     displayTasks(index);
@@ -277,6 +280,7 @@ function addTaskViaSVG(index, selection){
         domModule.displayCurrentProjectData(index, domModule.main)   
 
     } 
+    
 
 }
 export function changeTaskSubmitID(){
@@ -296,7 +300,8 @@ function addTaskViaProjectCard(index, selection){
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                             `${domModule.taskDescription.value}`,
                              selection,
-                            `${domModule.taskDueDate.value}`);
+                            `${domModule.taskDueDate.value}`,
+                            new Date());
 
     projectList[index].projectArray.push(newTask);
 
@@ -311,6 +316,7 @@ function addTaskViaProjectCard(index, selection){
     }
     domModule.submitTaskButton.removeAttribute('id');
     displayTasks(index);
+    
     /* Need to remove the id attribute else on project removal corresponding option from
     dropdownlist isn't targetable */
     
@@ -382,6 +388,25 @@ function getRadioGroupValue(){
     
 }
 
+function saveProjectListToLocalStorage(){
+
+    localStorage.setItem('projectList', JSON.stringify(projectList));
+
+}
+
+function deserialiseProjectListFromLocalStorage(){
+
+    projectList = JSON.parse(localStorage.getItem('projectList'));
+    return projectList;
+}
+
+function updateProjectListInLocalStorage(){
+
+    localStorage.removeItem('projectList')
+    saveProjectListToLocalStorage();
+
+}
+
 
 /* function showLocalStorage(){
     
@@ -394,6 +419,7 @@ function getRadioGroupValue(){
 // TODO: remember to delete this, this means you can test/ console
 //what's happening!
 window.projectList = projectList;
+window.deserialiseProjectListFromLocalStorage = deserialiseProjectListFromLocalStorage;
 
 
 export {projectList}
