@@ -69,6 +69,9 @@ function addListenerToRemoveButton(){
             
             changeTaskSubmitID();
             addListenerToRemoveButton();
+            if(projectList.length == 0){
+                localStorage.clear();
+            }
         }
     }));
 
@@ -388,7 +391,10 @@ function getRadioGroupValue(){
     
 }
 
+/* LOCAL STORAGE FUNCTIONS */
+
 function saveProjectListToLocalStorage(){
+
 
     localStorage.setItem('projectList', JSON.stringify(projectList));
 
@@ -405,7 +411,7 @@ function repopulateProjectListFromLocalStorage(array){
  
     array = deserialiseProjectListFromLocalStorage();
 
-    array.forEach((project) =>{
+    array.forEach((project, pindex) =>{
         
         let existingProject = new Project(`${project.title}`, 
                                           `${project.description}`,
@@ -424,18 +430,20 @@ function repopulateProjectListFromLocalStorage(array){
                                          `${project.projectArray[index].dateCreated}`);
 
             existingProject.projectArray.push(existingTask);
-            displayTasks(index);
+            displayTasks(pindex);
             
         })
     })
 
     addListenerToRemoveButton();
     changeTaskSubmitID();
+    domModule.expandProject();
     
 }
 
 function updateProjectListInLocalStorage(){
 
+    
     localStorage.removeItem('projectList')
     saveProjectListToLocalStorage();
 
