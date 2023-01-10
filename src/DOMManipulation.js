@@ -3,7 +3,7 @@ import './style.css';
 import * as classes from './classes';
 import { checkTaskPriority, expandButtonArray, projectList } from './index';
 
-
+export const body = document.querySelector('body');
 export const main = document.querySelector('.main');
 export const sideBar = document.querySelector('.sideBar');
 export const addProjectButton = document.getElementById('addProject');

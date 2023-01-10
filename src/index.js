@@ -41,6 +41,7 @@ import { setClock } from './clock';
 setClock()
 setInterval(setClock, 1000);
 
+
 const projectList = []
 
 export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
@@ -408,37 +409,39 @@ function deserialiseProjectListFromLocalStorage(){
 }
 
 function repopulateProjectListFromLocalStorage(array){
+
+    if(localStorage.length !== 0){
  
-    array = deserialiseProjectListFromLocalStorage();
+        array = deserialiseProjectListFromLocalStorage();
 
-    array.forEach((project, pindex) =>{
+        array.forEach((project, pindex) =>{
         
-        let existingProject = new Project(`${project.title}`, 
-                                          `${project.description}`,
-                                          `${project.dateCreated}`,
-                                          `${project.projectArray}`);
+            let existingProject = new Project(`${project.title}`, 
+                                              `${project.description}`,
+                                              `${project.dateCreated}`,
+                                              `${project.projectArray}`);
                             
-        projectList.push(existingProject);
-        existingProject.displayProjectData();
-        existingProject.addProjectToDropDownSelection();
-        
-        project.projectArray.forEach((task, index) =>{
-            let existingTask = new Task (`${project.projectArray[index].title}`,
-                                         `${project.projectArray[index].description}`,
-                                         `${project.projectArray[index].priority}`,
-                                         `${project.projectArray[index].dueDate}`,
-                                         `${project.projectArray[index].dateCreated}`);
-
-            existingProject.projectArray.push(existingTask);
-            displayTasks(pindex);
+            projectList.push(existingProject);
+            existingProject.displayProjectData();
+            existingProject.addProjectToDropDownSelection();
             
-        })
-    })
+            project.projectArray.forEach((task, index) =>{
+                let existingTask = new Task (`${project.projectArray[index].title}`,
+                                             `${project.projectArray[index].description}`,
+                                             `${project.projectArray[index].priority}`,
+                                             `${project.projectArray[index].dueDate}`,
+                                             `${project.projectArray[index].dateCreated}`);
 
-    addListenerToRemoveButton();
-    changeTaskSubmitID();
-    domModule.expandProject();
-    
+                existingProject.projectArray.push(existingTask);
+                displayTasks(pindex);
+
+            })
+         })
+     
+         addListenerToRemoveButton();
+         changeTaskSubmitID();
+         domModule.expandProject();
+    }
 }
 
 function updateProjectListInLocalStorage(){
@@ -467,4 +470,4 @@ window.repopulateProjectListFromLocalStorage = repopulateProjectListFromLocalSto
 
 export {projectList}
 
-
+domModule.body.onload = repopulateProjectListFromLocalStorage();
