@@ -41,7 +41,7 @@ import { setClock } from './clock';
 setClock()
 setInterval(setClock, 1000);
 
-let projectList = []
+const projectList = []
 
 export const newTaskButtonArray = Array.from(document.querySelectorAll('.newTaskButton'));
 
@@ -396,8 +396,42 @@ function saveProjectListToLocalStorage(){
 
 function deserialiseProjectListFromLocalStorage(){
 
-    projectList = JSON.parse(localStorage.getItem('projectList'));
-    return projectList;
+    let deserialisedProjectList = JSON.parse(localStorage.getItem('projectList'));
+    return deserialisedProjectList
+    
+}
+
+function repopulateProjectListFromLocalStorage(array){
+ 
+    array = deserialiseProjectListFromLocalStorage();
+
+    array.forEach((project) =>{
+        
+        let existingProject = new Project(`${project.title}`, 
+                                          `${project.description}`,
+                                          `${project.dateCreated}`,
+                                          `${project.projectArray}`);
+                            
+        projectList.push(existingProject);
+        existingProject.displayProjectData();
+        existingProject.addProjectToDropDownSelection();
+        
+        project.projectArray.forEach((task, index) =>{
+            let existingTask = new Task (`${project.projectArray[index].title}`,
+                                         `${project.projectArray[index].description}`,
+                                         `${project.projectArray[index].priority}`,
+                                         `${project.projectArray[index].dueDate}`,
+                                         `${project.projectArray[index].dateCreated}`);
+
+            existingProject.projectArray.push(existingTask);
+            displayTasks(index);
+            
+        })
+    })
+
+    addListenerToRemoveButton();
+    changeTaskSubmitID();
+    
 }
 
 function updateProjectListInLocalStorage(){
@@ -420,6 +454,7 @@ function updateProjectListInLocalStorage(){
 //what's happening!
 window.projectList = projectList;
 window.deserialiseProjectListFromLocalStorage = deserialiseProjectListFromLocalStorage;
+window.repopulateProjectListFromLocalStorage = repopulateProjectListFromLocalStorage;
 
 
 export {projectList}
