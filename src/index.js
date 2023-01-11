@@ -140,7 +140,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
     
     if(domModule.inputDiv.contains(domModule.createDropDownList.projectDropDownList)){
         if(taskFormValidationViaSVG() == true){
-            addTaskViaSVG();
+            addTaskViaSVG(findProjectIndex(), getRadioGroupValue());
             domModule.closeTaskModal();
              e.preventDefault();
             /* Think these are needed in this order */
@@ -153,7 +153,7 @@ domModule.submitTaskButton.addEventListener('click', (e) => {
         and then validation */
         
     } else if(taskFormValidationViaProjectCard()){
-            addTaskViaProjectCard();
+            addTaskViaProjectCard(domModule.submitTaskButton.getAttribute('id'), getRadioGroupValue());
             domModule.closeTaskModal();
         e.preventDefault();
         /* Think these are needed in this order */
@@ -258,10 +258,6 @@ function findProjectIndex(projectTitle){
 /* Uses index to push new task to desired project instance */
 function addTaskViaSVG(index, selection){
 
-    index = findProjectIndex();
-    selection = getRadioGroupValue();
-
-
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                            `${domModule.taskDescription.value}`,
                             selection,
@@ -297,9 +293,6 @@ export function changeTaskSubmitID(){
 }
 
 function addTaskViaProjectCard(index, selection){
-
-    index = domModule.submitTaskButton.getAttribute('id');
-    selection = getRadioGroupValue()
 
     let newTask = new Task(`${domModule.taskTitle.value}`, 
                             `${domModule.taskDescription.value}`,
