@@ -43,14 +43,18 @@ export class Project{
         buttonDiv.classList.add('sideCardButtonDiv');
         newProject.appendChild(buttonDiv);
 
-        let newTaskButton = document.createElement('img');
-        newTaskButton.setAttribute('src', './assets/note-plus-outline.svg');
-        newTaskButton.classList.add('newTaskButton');
-        buttonDiv.appendChild(newTaskButton);
+        let newTaskButton = document.createElement('button');
+        newTaskButton.setAttribute('type', 'button');
+        newTaskButton.setAttribute('data-tool-tip', 'Add a task to this project');
         
-        newTaskButton.innerText = 'Add Task';
-        newTaskButtonArray.push(newTaskButton);
-        newTaskButton.addEventListener('click', () => {
+        let newTaskButtonImage = document.createElement('img');
+        newTaskButtonImage.setAttribute('src', './assets/note-plus-outline.svg');
+        newTaskButtonImage.classList.add('newTaskButton');
+        buttonDiv.appendChild(newTaskButton);
+        newTaskButton.appendChild(newTaskButtonImage);
+        
+        newTaskButtonArray.push(newTaskButtonImage);
+        newTaskButtonImage.addEventListener('click', () => {
             if(domModule.inputDiv.contains(domModule.createDropDownList.projectDropDownList)){
                 domModule.removeDropDownListFromTaskForm();
 
@@ -59,18 +63,26 @@ export class Project{
             domModule.showTaskModal();
         })   
 
-        let expandButton = document.createElement('img');
-        expandButton.setAttribute('src', './assets/arrow-expand.svg');
+        let expandButton = document.createElement('button');
+        expandButton.setAttribute('type', 'button');
+        let expandButtonImage = document.createElement('img')
+        expandButtonImage.setAttribute('src', './assets/arrow-expand.svg');
+        expandButton.appendChild(expandButtonImage);
+        expandButton.setAttribute('data-tool-tip', 'Expand project');
         buttonDiv.appendChild(expandButton);
-        expandButton.classList.add('expandButton');
-        expandButtonArray.push(expandButton);
+        expandButtonImage.classList.add('expandButton');
+        expandButtonArray.push(expandButtonImage);
 
-        let removeButton = document.createElement('img');
-        removeButton.setAttribute('src', './assets/delete-sweep-outline.svg')
+        let removeButton = document.createElement('button');
+        removeButton.setAttribute('type', 'button');
+        removeButton.setAttribute('data-tool-tip', 'Delete Project');
+        let removeButtonImage = document.createElement('img');
+        removeButtonImage.setAttribute('src', './assets/delete-sweep-outline.svg');
+        removeButton.appendChild(removeButtonImage);
         buttonDiv.appendChild(removeButton);
-        removeButton.classList.add('removeProjectButton');
-        removeProjectButtonArray.push(removeButton);
-        removeButton.addEventListener('click', () =>{
+        removeButtonImage.classList.add('removeProjectButton');
+        removeProjectButtonArray.push(removeButtonImage);
+        removeButtonImage.addEventListener('click', () =>{
            domModule.sideBar.removeChild(newProject);
           
         })
