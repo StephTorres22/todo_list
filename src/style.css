@@ -59,6 +59,38 @@ body{
     margin: 0;
 }
 
+button[data-tool-tip]{
+    position: relative;
+    
+
+}
+
+button[data-tool-tip]::before{
+    position: absolute;
+    content: attr(data-tool-tip);
+    height: fit-content;
+    width: auto;
+    background-color: var(--highlight-color);
+    padding: .5em;
+    border-radius: 5px;
+    bottom: 25%;    
+    color: var(--main-color);
+    transform: scale(0);
+    transition: transform ease-out 300ms,
+                bottom ease-out 300ms;
+}
+
+button[data-tool-tip]:hover::before{
+    transform: scale(1);
+    bottom: 100%;
+    
+}
+
+button:focus{
+    outline: none;
+
+}/* this stops the buttons showing an outline after being clicked */
+
 .smallIcon{
 
     height: 4rem;
