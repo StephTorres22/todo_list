@@ -68,7 +68,7 @@ export class Project{
         let expandButtonImage = document.createElement('img')
         expandButtonImage.setAttribute('src', './assets/arrow-expand.svg');
         expandButton.appendChild(expandButtonImage);
-        expandButton.setAttribute('data-tool-tip', 'Expand project');
+        expandButton.setAttribute('data-tool-tip', 'Expand this project');
         buttonDiv.appendChild(expandButton);
         expandButtonImage.classList.add('expandButton');
         expandButtonArray.push(expandButtonImage);
@@ -84,6 +84,15 @@ export class Project{
         removeProjectButtonArray.push(removeButtonImage);
         removeButtonImage.addEventListener('click', () =>{
            domModule.sideBar.removeChild(newProject);
+           
+           if(domModule.main.getAttribute('id') == this.title){
+               domModule.main.removeAttribute('id');
+                if(domModule.main.hasChildNodes !== true){
+                    while(domModule.main.firstChild){
+                        domModule.main.removeChild(domModule.main.firstChild)
+                    }
+                }
+           }
           
         })
     }

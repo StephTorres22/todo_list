@@ -60,11 +60,14 @@ function addListenerToRemoveButton(){
             removeProjectButtonArray.splice(index, 1);
             newTaskButtonArray.splice(index, 1);
             taskListDivArray.splice(index, 1);
+            expandButtonArray.splice(index, 1);
             updateProjectListInLocalStorage();
 
             domModule.removeDropDownListFromTaskForm();
             domModule.repopulateDropDownList();
+            domModule.expandProject();
             domModule.closeTaskModal();
+            
             
             //each option has attribute id set to index of project in projectList
             
@@ -459,6 +462,7 @@ function updateProjectListInLocalStorage(){
 window.projectList = projectList;
 window.deserialiseProjectListFromLocalStorage = deserialiseProjectListFromLocalStorage;
 window.repopulateProjectListFromLocalStorage = repopulateProjectListFromLocalStorage;
+window.expandButtonArray = expandButtonArray
 
 
 export {projectList}

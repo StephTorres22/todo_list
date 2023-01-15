@@ -231,7 +231,6 @@ export function setListenerOnButtonFromArray(array, type, callBack){
 /* this works pretty well, is it usable in this project? */
 
 
-/* This doesn't work, because element becomes a Document, not HTMLElement, annoying. */
 /* function deleteCurrentDisplay(target: HTMLElement){
     
     if(target.hasChildNodes !== true){
@@ -246,7 +245,6 @@ trying to avoid repetition. */
 
 
 
-/* REMEMBER TO REMOVE THIS */
 
 
 
