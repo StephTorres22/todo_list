@@ -51,6 +51,14 @@ body{
     
 }
 
+.sidebarButtons{
+    height: fit-content;
+    width: auto;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+}
+
 .smallIcon{
 
     height: 4rem;
