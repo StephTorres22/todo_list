@@ -228,6 +228,7 @@ export function setListenerOnButtonFromArray(array, type, callBack){
 
 }
 
+
 /* this works pretty well, is it usable in this project? */
 
 

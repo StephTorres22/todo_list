@@ -54,6 +54,8 @@ body{
     
 }
 
+/* TOOL TIPS ON BUTTONS */
+
 
 
 button[data-tool-tip]{
@@ -73,8 +75,8 @@ button[data-tool-tip]::before{
     bottom: 25%;    
     color: var(--main-color);
     transform: scale(0);
-    transition: transform ease-out 300ms,
-                bottom ease-out 300ms;
+    transition: transform 300ms ease-out .5s,
+                bottom 300ms ease-out .5s;
 }
 
 button[data-tool-tip]:hover::before{
