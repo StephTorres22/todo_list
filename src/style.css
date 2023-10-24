@@ -1,429 +1,414 @@
-:root{
-    font-family: Arial, Helvetica, sans-serif;
-    --main-color: rgb(8, 103, 187);
-    --secondary-color: rgb(125, 172, 241);
-    --tertiary-color: rgb(245, 239, 239);
-    --highlight-color: rgb(255, 230, 0);
-    
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  --main-color: rgb(8, 103, 187);
+  --secondary-color: rgb(125, 172, 241);
+  --tertiary-color: rgb(245, 239, 239);
+  --highlight-color: rgb(255, 230, 0);
 }
 
-body{
-    margin: 0;
-    
-
-    
-    
+body {
+  margin: 0;
 }
 
-#content{   
-    height: auto;
-    display: grid;
-    grid-template-columns: .5fr 1.5fr 1.5fr 1fr;
-    grid-template-rows: .5fr 1.5fr 1.5fr;
-    grid-template-areas: 
+#content {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 1.5fr 1fr;
+  grid-template-rows: 10rem 1.5fr 1.5fr;
+  grid-template-areas:
     "top top top top"
     "side main main rside"
     "side main main rside";
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* SIDEBAR STYLES */
-.sideBar{
-
-    min-height: 100vh;
-    grid-area: side;
-    background-color: var(--main-color);
-    padding: .75rem;
-    padding-top: 3rem;
+.sideBar {
+  min-height: 100%;
+  grid-area: side;
+  background-color: var(--main-color);
+  padding: 0.75rem;
+  padding-top: 3rem;
 }
 
-.sideBarControls{
-
-    max-width: inherit;
-    max-height: 4rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    padding-top:0;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    margin-top: .75em;
-    margin-bottom: 2em;
-    padding-bottom: .5rem;
-    border-bottom: 2px solid var(--secondary-color);
-    
+.sideBarControls {
+  max-width: inherit;
+  max-height: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0.75em;
+  margin-bottom: 2em;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--secondary-color);
 }
 
 /* TOOL TIPS ON BUTTONS */
 
-
-
-button[data-tool-tip]{
-    position: relative;
-    
-
+button[data-tool-tip] {
+  position: relative;
 }
 
-button[data-tool-tip]::before{
-    position: absolute;
-    content: attr(data-tool-tip);
-    height: auto;
-    width: fit-content;
-    background-color: var(--highlight-color);
-    padding: .5em;
-    border-radius: 5px;
-    bottom: 25%;    
-    color: var(--main-color);
-    transform: scale(0);
-    transition: transform 300ms ease-out .5s,
-                bottom 300ms ease-out .5s;
+button[data-tool-tip]::before {
+  position: absolute;
+  content: attr(data-tool-tip);
+  height: auto;
+  width: fit-content;
+  background-color: var(--highlight-color);
+  padding: 0.5em;
+  border-radius: 5px;
+  bottom: 25%;
+  color: var(--main-color);
+  transform: scale(0);
+  transition: transform 300ms ease-out 0.5s, bottom 300ms ease-out 0.5s;
 }
 
-button[data-tool-tip]:hover::before{
-    transform: scale(1);
-    bottom: 100%;
-    
+button[data-tool-tip]:hover::before {
+  transform: scale(1);
+  bottom: 100%;
 }
 
-button{
-    height: fit-content;
-    width: auto;
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    padding-right: .25em;
-    padding-left: 0;
-    
+button {
+  height: fit-content;
+  width: auto;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding-right: 0.25em;
+  padding-left: 0;
 }
 
-button:focus{
-    outline: none;
+button:focus {
+  outline: none;
+} /* this stops the buttons showing an outline after being clicked */
 
-}/* this stops the buttons showing an outline after being clicked */
-
-.smallIcon{
-
-    height: 4rem;
-    width: auto;    
+.smallIcon {
+  height: 4rem;
+  width: auto;
 }
 
 .smallIcon:hover,
 .newTaskButton:hover,
 .removeProjectButton:hover,
 .expandButton:hover,
-.formButtons:hover{
-    filter: 
-        invert(0.5)
-        sepia(1)
-        saturate(20)
-        hue-rotate(21deg)
-        brightness(1.5);
-        /* this is incredile! because svg is in an image tag in HTML, can't access 
+.formButtons:hover {
+  filter: invert(0.5) sepia(1) saturate(20) hue-rotate(21deg) brightness(1.5);
+  /* this is incredile! because svg is in an image tag in HTML, can't access 
         fill and stroke attribute,
         using filter however we can play around with the colour!
         https://css-tricks.com/the-many-ways-to-change-an-svg-fill-on-hover-and-when-to-use-them/ */
 }
 
-.sideBarCard{
-    border-radius: 10px;
-    background-color: white;
-    max-width: 14rem;
-    max-height: 15rem;
-    padding: .5rem;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    
+.sideBarCard {
+  border-radius: 10px;
+  background-color: white;
+  max-width: 14rem;
+  max-height: 15rem;
+  padding: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
-.sideBarCard h3, .sideBarCard h2{
-    margin: 0;
-    margin-bottom: .175rem;
-    text-decoration: underline;
+.sideBarCard h3,
+.sideBarCard h2 {
+  margin: 0;
+  margin-bottom: 0.175rem;
+  text-decoration: underline;
 }
 
-.projectArrayDiv{
-    
-    max-width: inherit;
-    height:8rem;
-    
-    margin-bottom: .5rem;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    border: 2px;
-    overflow: hidden;
-    
+.projectArrayDiv {
+  max-width: inherit;
+  height: 8rem;
+
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  border: 2px;
+  overflow: hidden;
 }
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px; 
+  width: 5px;
+  height: 5px;
 }
 
-::-webkit-scrollbar-x{
-    width: 5px;
+::-webkit-scrollbar-x {
+  width: 5px;
+}
 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--secondary-color);
+  border-radius: 10px;
 }
-    
-::-webkit-scrollbar-track {    
-    box-shadow: inset 0 0 5px var(--secondary-color); 
-    border-radius: 10px;
-}
-    
+
 ::-webkit-scrollbar-thumb {
-    width: 5px;
-    background: var(--secondary-color); 
-    border-radius: 10px;
+  width: 5px;
+  background: var(--secondary-color);
+  border-radius: 10px;
 }
 
-li{
-    color: black;
-    font-size: large;
-    list-style: none;
+li {
+  color: black;
+  font-size: large;
+  list-style: none;
 }
 
-.sideCardButtonDiv{
-
-    display: flex;
-    justify-content: flex-end;    
+.sideCardButtonDiv {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.newTaskButton, .removeProjectButton, .expandButton{  
-    width: auto;
-    height: 2.5rem;
-    margin: .25rem;
+.newTaskButton,
+.removeProjectButton,
+.expandButton {
+  width: auto;
+  height: 2.5rem;
+  margin: 0.25rem;
 }
-
-
 
 /* TOP BAR STYLES */
-.topBar{
-
-    min-width: 100vh;
-    grid-area: top;
-    background-color: var(--secondary-color);
-
+.topBar {
+  min-width: 100vh;
+  grid-area: top;
+  background-color: var(--secondary-color);
 }
 
 /* MAIN CONTENT STYLES */
 
-.main{
-    grid-area: main;
-    background-color: var(--main-color);
-    
-
+.main {
+  grid-area: main;
+  background-color: var(--main-color);
 }
 
-.mainProjectCard{
-    border: solid;
-    background-color: white;
-    border-color: white;
-    border-radius: 10px;
-    min-height: 74vh;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: .5rem;
-    overflow-y: scroll;
+.mainProjectCard {
+  border: solid;
+  background-color: white;
+  border-color: white;
+  border-radius: 10px;
+  min-height: 74vh;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  overflow-y: scroll;
 }
 
-.mainProjectCard h1, h2, h3, h4{
-    text-decoration: underline;
-    
+.mainProjectCard h1,
+h2,
+h3,
+h4 {
+  text-decoration: underline;
 }
 
-.mainProjectCard li{
-    padding: .5rem;
-    margin-bottom: .5rem;
+.mainProjectCard li {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* MODAL AND FORM STYLES */
 
-.modal{
-
-    border-style: none;
-    border-radius: 10px;
-    height: 17rem;
+.modal {
+  border-style: none;
+  border-radius: 10px;
+  height: 17rem;
 }
 
-
-.modal form{
-    display: flex;
-    flex-direction: column;
-    height: 12.5rem;
-    
+.modal form {
+  display: flex;
+  flex-direction: column;
+  height: 12.5rem;
 }
 
-.modal form legend{
-    font-size: 1.75rem;
-    margin-bottom: .75rem;
-    text-decoration: underline;
+.modal form legend {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  text-decoration: underline;
 }
 
-.modal form input{
-    font-size: 1.25rem;
-    margin-bottom: .5rem;    
-
+.modal form input {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
-.modal form .buttonDiv{
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 2rem;
-    
-
+.modal form .buttonDiv {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
 }
-#projectFormModal .buttonDiv{
-    margin-top: 5rem;
+#projectFormModal .buttonDiv {
+  margin-top: 5rem;
 }
 
-.projectInputDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.projectInputDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.inputDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-input[type ="text"]{
-    border-radius: 5px;
-    background-color: var(--tertiary-color);    
-    border-color: var(--secondary-color);
-    border-style: solid;
+input[type="text"] {
+  border-radius: 5px;
+  background-color: var(--tertiary-color);
+  border-color: var(--secondary-color);
+  border-style: solid;
 }
 
-input[type="date"]{
-    font-family: Arial, Helvetica, sans-serif;
-    /* padding: .8rem 0rem;/* size and height don't work on date inputs, needed to play with padding */
-    border-radius: 5px;
-    background-color: var(--tertiary-color);
-    border-color: var(--secondary-color);
-    border-style: solid;
+input[type="date"] {
+  font-family: Arial, Helvetica, sans-serif;
+  /* padding: .8rem 0rem;/* size and height don't work on date inputs, needed to play with padding */
+  border-radius: 5px;
+  background-color: var(--tertiary-color);
+  border-color: var(--secondary-color);
+  border-style: solid;
 }
 
-select{
-    font-size: 1.25rem;
-    border-style: solid;
-    border-color: var(--secondary-color);
-    background-color: var(--tertiary-color);
-    border-radius: 5px;
+select {
+  font-size: 1.25rem;
+  border-style: solid;
+  border-color: var(--secondary-color);
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
 }
 
-
-input:focus, select:focus{
-    outline: none;
-    border-color: var(--highlight-color);
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--highlight-color);
 }
 
-.formButtons{
-    width: auto;
-    height: 2.5rem;
-    margin: .25rem;
+.formButtons {
+  width: auto;
+  height: 2.5rem;
+  margin: 0.25rem;
 }
 
-.buttonDiv button{
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0;
+.buttonDiv button {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* RIGHT SIDE COMPARTMENT STYLES */
 
-.rightSide{
-    grid-area: rside;
-    background-color: var(--main-color);
-    display: flex;
-    justify-content: center;
+.rightSide {
+  grid-area: rside;
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: center;
 }
 
 /* CLOCK STLYING */
 /* Thanks Kyle @ WebDevSimplified */
 
-.clock::after{
-    content: '';
-    position: absolute;
-    z-index: 11;
-    left: 50%;
-    top: 50%;
-    border-radius: 50%;
-    background-color: var(--main-color);
-    width: 2rem;
-    height: 2rem;
-    transform: translate(-50%, -50%);
+.clock::after {
+  content: "";
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  width: 2rem;
+  height: 2rem;
+  transform: translate(-50%, -50%);
 }
-.clock{
-    margin-top: 2rem;
-    width: 22rem;
-    height: 22rem;
-    border-style: solid;
-    
-    border-color: var(--secondary-color);
-    border-radius: 50%;
-    background-color: var(--main-color);
-    position: relative;
-}
+.clock {
+  margin-top: 2rem;
+  width: 22rem;
+  height: 22rem;
+  border-style: solid;
 
-.clock .number{
-    
-    --rotation: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transform: rotate(var(--rotation));
+  border-color: var(--secondary-color);
+  border-radius: 50%;
+  background-color: var(--main-color);
+  position: relative;
 }
 
-.clock .number1{ --rotation: 30deg;}
-.clock .number2{ --rotation: 60deg;}
-.clock .number3{ --rotation: 90deg;}
-.clock .number4{ --rotation: 120deg;}
-.clock .number5{ --rotation: 150deg;}
-.clock .number6{ --rotation: 180deg;}
-.clock .number7{ --rotation: 210deg;}
-.clock .number8{ --rotation: 240deg;}
-.clock .number9{ --rotation: 270deg;}
-.clock .number10{ --rotation: 300deg;}
-.clock .number11{ --rotation: 330deg;}
-
-.clock .hand{
-    --rotation: 0;
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    width: 5px;    
-    background-color: var(--secondary-color);
-    transform-origin: bottom;
-    transform: translateX(-50%) rotate(calc(var(--rotation)*1deg));
+.clock .number {
+  --rotation: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform: rotate(var(--rotation));
 }
 
-.clock .hand.minute{
-    height: 40%;
+.clock .number1 {
+  --rotation: 30deg;
+}
+.clock .number2 {
+  --rotation: 60deg;
+}
+.clock .number3 {
+  --rotation: 90deg;
+}
+.clock .number4 {
+  --rotation: 120deg;
+}
+.clock .number5 {
+  --rotation: 150deg;
+}
+.clock .number6 {
+  --rotation: 180deg;
+}
+.clock .number7 {
+  --rotation: 210deg;
+}
+.clock .number8 {
+  --rotation: 240deg;
+}
+.clock .number9 {
+  --rotation: 270deg;
+}
+.clock .number10 {
+  --rotation: 300deg;
+}
+.clock .number11 {
+  --rotation: 330deg;
 }
 
-.clock .hand.hour{
-    height: 33.5%;
+.clock .hand {
+  --rotation: 0;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 5px;
+  background-color: var(--secondary-color);
+  transform-origin: bottom;
+  transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
 }
 
-.clock .hand.second{
-    height: 47.5%;
-    background-color: var(--highlight-color);
-    z-index: 10;
+.clock .hand.minute {
+  height: 40%;
 }
 
-.shape{
-    position: absolute;
-    height: 0rem;
-    width: 5px;
-    border-top: 50px solid;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: .5rem;
-    border-top-color: var(--secondary-color);
+.clock .hand.hour {
+  height: 33.5%;
 }
 
+.clock .hand.second {
+  height: 47.5%;
+  background-color: var(--highlight-color);
+  z-index: 10;
+}
+
+.shape {
+  position: absolute;
+  height: 0rem;
+  width: 5px;
+  border-top: 50px solid;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  border-top-color: var(--secondary-color);
+}
